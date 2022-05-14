@@ -56,4 +56,18 @@
 
     </LinearLayout>
 
+    <!-- WRITE_BUTTON -->
+    <!-- Fl를 치면 자동으로 띄울 수 있는 버튼이 생성되는 코드가 나온다. -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_write"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="#448AFF"
+        app:tint="@color/white"
+        android:src="@drawable/img_pencil"/>
+
+
 </FrameLayout>
