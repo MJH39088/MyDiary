@@ -19,9 +19,9 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 // 메인 액티비티로 이동 하는 구간
-                Intent mainIntent = new Intent(SplashActivity.this , MainActivity.class);
-                startActivity(mainIntent);
-                finish();
+                Intent mainIntent = new Intent(SplashActivity.this , MainActivity.class); // 현재클래스.this > 다음클래스.class 로 이동하는 클래스 인스턴스 생성
+                startActivity(mainIntent); // 변수에 저장된 클래스로 이동
+                finish(); // 생명 주기 파괴
             }
         }, 1500); // 딜레이 해주고 싶은 초를 적어야 함. (1000 밀리초 = 1초)
 
