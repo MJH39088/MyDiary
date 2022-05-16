@@ -28,7 +28,7 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <!-- 서버와 클라이언트 안전한 연결을 위한 Shapeble -->
+            <!-- 서버와 클라이언트 안전한 연결을 위한 Shapeable -->
             <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
