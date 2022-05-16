@@ -10,7 +10,8 @@
 
     <!-- 리니어 레이아웃 : orientation 방향으로 쌓아 나갑니다.
          orientation의 vertical은 수직, horizontal은 수평-->
-    <LinearLayout
+    <!-- androidx.appcompat.widget.LinearLayoutCompat 은 아이폰의 이모지 깨지거나 삼성의 최신 이모티콘을 위함-->
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -27,13 +28,14 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-
-            <ImageView
+            <!-- 서버와 클라이언트 안전한 연결을 위한 Shapeble -->
+            <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/img_logo_diary"/>
 
-            <TextView
+            <!-- 서버와 클라이언트 안전한 연결을 위한 AppCompat -->
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="나의 다이어리"
@@ -54,7 +56,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <!-- WRITE_BUTTON -->
     <!-- Fl를 치면 자동으로 띄울 수 있는 버튼이 생성되는 코드가 나온다. -->
