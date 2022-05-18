@@ -1,6 +1,7 @@
 package com.example.mydiary;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -20,7 +21,7 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
         // 아이템 뷰가 최초로 생성이 될 때 호출되는 곳 = 생성주기 시작이 되는 곳
 
         mContext = parent.getContext();
-
+        View holder = LayoutInflater.from(mContext).inflate(R.layout.)
         return null;
     }
 
@@ -38,7 +39,8 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         // 하나의 아이템 뷰
-        public ViewHolder(NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView) {
+
             super(itemView);
         }
     }
