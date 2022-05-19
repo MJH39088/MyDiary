@@ -1,20 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
     android:orientation="vertical">
 
     <!-- Title -->
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <com.google.android.material.imageview.ShapeableImageView
+        <ImageView
+            android:id="@+id/iv_weather"
+            android:layout_width="29dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/img_sun" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:layout_marginStart="16dp"
+            android:text="다이어리 제목"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <!-- Date -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end">
+
+        <TextView
+            android:id="@+id/tv_user_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src=""
+            android:layout_marginEnd="8dp"
+            android:text="2022/05/19"
+            android:textSize="12sp"/>
+    </LinearLayout>
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    <!-- Divided Line -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#B3B3B3"
+        android:layout_marginTop="8dp"/>
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+</LinearLayout>
