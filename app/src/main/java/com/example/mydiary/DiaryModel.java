@@ -1,7 +1,10 @@
 package com.example.mydiary;
 
+import java.io.Serializable;
+
 /** 다이어리 리스트 아이템을 구성하는 모델(표본) **/
-public class DiaryModel {
+//Serializable은 데이터가 중구난방일 경우 한 묶음 패키지로 날려보내기 위해 사용함 이 클래스 자체를 다음 액티비티로 넘길 수 있게 도와줌 직렬화
+public class DiaryModel implements Serializable {
     int id;             // 게시물 고유 ID 값
     String title;       // 게시물 제목
     String content;     // 게시물 내용
