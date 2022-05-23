@@ -1,6 +1,8 @@
 package com.example.mydiary;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -103,10 +105,41 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
                 }
             });
 
-            // 선택지 옵션 팝업 (수정, 삭제)
+            // 선택지 옵션 팝업 (수정, 삭제) 꾹 누르면 작동
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
+                    // 현재 클릭이 된 위치 (배열 개념이어서 첫 시작이 0부터 세는 기준)
+                    int currentPositon = getAdapterPosition();
+
+                    // 현재 클릭 된 리스트 아이템 정보를 가지는 변수
+                    DiaryModel diaryModel = mLstDiary.get(currentPositon);
+
+                    // 버튼 선택지 배열
+                    String[] strChoiceArray = {"수정 하기", "삭제 하기"};
+
+                    // 팝업 화면 표시
+                    new AlertDialog.Builder(mContext)
+                            .setTitle("원하시는 동작을 선택하세요")
+                            .setItems(strChoiceArray, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int position) {
+                                    if (position == 0) {
+                                        // 수정 하기 버튼 눌렀을 때..
+                                        // 화면 이동 및 다이어리 데이터 다음 액티비티로 전달
+                                        Intent diaryDetailIntent = new Intent(mContext, DiaryDetailActivity.class);
+                                        diaryDetailIntent.putExtra("diaryModel", diaryModel);       // 다이어리 데이터 넘기기
+                                        diaryDetailIntent.putExtra("mode", "modify");         // 수정하기 모드로 설정
+                                        mContext.startActivity(diaryDetailIntent);
+                                    } else {
+                                        // 삭제 하기 버튼 눌렀을 때..
+                                        mLstDiary.remove(currentPositon);       //배열에서 제거함 (데이터)
+                                        //notify는 새로고침 즉 제거하면서 UI를 고친다는 의미 배열도 지워야 되고 UI도 지워야 됨
+                                        notifyItemRemoved(currentPositon);      //리스트 뷰에서 제거함
+                                    }
+                                }
+                            }).show();
+
                     return false;
                 }
             });
