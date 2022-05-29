@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="16dp"
     android:orientation="vertical"
     tools:context=".DiaryDetailActivity">
 
@@ -121,6 +122,97 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/black"/>
+
+        <!-- RADIO BUTTON GROUP -->
+        <RadioGroup
+            android:id="@+id/rg_weather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:padding="8dp"
+            android:background="#504f4f"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:button="@null"
+                android:background="@drawable/selector_btn_sun"/>
+
+            <RadioButton
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="16dp"
+                android:button="@null"
+                android:background="@drawable/selector_btn_cloudy"/>
+
+            <RadioButton
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="16dp"
+                android:button="@null"
+                android:background="@drawable/selector_btn_cloud"/>
+
+            <RadioButton
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="16dp"
+                android:button="@null"
+                android:background="@drawable/selector_btn_bad_cloud"/>
+
+            <RadioButton
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="16dp"
+                android:button="@null"
+                android:background="@drawable/selector_btn_rainy"/>
+
+            <RadioButton
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="16dp"
+                android:button="@null"
+                android:background="@drawable/selector_btn_snowy"/>
+
+        </RadioGroup>
+
+
+    </LinearLayout>
+
+    <!-- CONTENT -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내용"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:id="@+id/et_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top|left"
+            android:inputType="textMultiLine"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="8dp"
+            android:singleLine="true"
+            android:lines="15"
+            android:maxLines="15"
+            android:maxLength="120"
+            android:scrollbars="vertical"
+            android:scrollHorizontally="false"
+            android:overScrollMode="always"
+
+            android:padding="8dp"
+            android:background="@drawable/shape_input_field"/>
 
     </LinearLayout>
 

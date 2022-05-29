@@ -4,6 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudioProjt/app/src/main/res/drawable/img_pencil.xml" value="0.235" />
+        <entry key="..\:/AndroidStudioProjt/app/src/main/res/drawable/selector_btn_bad_cloud.xml" value="0.235" />
+        <entry key="..\:/AndroidStudioProjt/app/src/main/res/drawable/selector_btn_cloud.xml" value="0.235" />
+        <entry key="..\:/AndroidStudioProjt/app/src/main/res/drawable/selector_btn_cloudy.xml" value="0.235" />
+        <entry key="..\:/AndroidStudioProjt/app/src/main/res/drawable/selector_btn_rainy.xml" value="0.235" />
+        <entry key="..\:/AndroidStudioProjt/app/src/main/res/drawable/selector_btn_snowy.xml" value="0.235" />
+        <entry key="..\:/AndroidStudioProjt/app/src/main/res/drawable/selector_btn_sun.xml" value="0.235" />
         <entry key="..\:/AndroidStudioProjt/app/src/main/res/drawable/shape_input_field.xml" value="0.235" />
         <entry key="..\:/AndroidStudioProjt/app/src/main/res/layout/activity_diary_detail.xml" value="0.38645833333333335" />
         <entry key="..\:/AndroidStudioProjt/app/src/main/res/layout/activity_main.xml" value="0.33" />
