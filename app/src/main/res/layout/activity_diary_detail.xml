@@ -210,7 +210,6 @@
             android:scrollbars="vertical"
             android:scrollHorizontally="false"
             android:overScrollMode="always"
-
             android:padding="8dp"
             android:background="@drawable/shape_input_field"/>
 
