@@ -42,7 +42,7 @@
                 android:layout_marginLeft="8dp"
                 android:textColor="@color/black"
                 android:textSize="24sp"
-                android:textStyle="bold|italic"/>
+                android:textStyle="bold"/>
 
 
         </LinearLayout>

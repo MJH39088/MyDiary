@@ -2,9 +2,11 @@ package com.example.mydiary;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -45,8 +48,8 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
         mTvDate.setOnClickListener(this);                       // 클릭 기능 부여
 
         // 기본으로 설정될 날짜의 값을 지정 (디바이스 현재 시간 기준)
-        mSelectedUserDate = new SimpleDateFormat("yyyy/mm/dd E요일", Locale.KOREAN).format(new Date());
-        // String 값인 defaultDate(현재 날짜)를 mTvDate에 넣는다.
+        mSelectedUserDate = new SimpleDateFormat("yyyy/MM/dd E요일", Locale.KOREAN).format(new Date());
+        // String 값인 mSelectedUserDate(현재 날짜)를 mTvDate에 넣는다.
         mTvDate.setText(mSelectedUserDate);
     }
 
@@ -91,6 +94,22 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
                 break;
             case R.id.tv_date:
                 // 일시 설정 텍스트
+                // 달력을 띄워서 사용자에게 일시를 입력 받는다.
+                Calendar calendar = Calendar.getInstance();
+                DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        // 달력에 선택 된 (년, 월, 일)을 가지고와서 다시 캘린더 함수에 넣어줘서 사용자가 선태갛ㄴ 요일을 알아낸다.
+                        Calendar innerCal = Calendar.getInstance();
+                        innerCal.set(Calendar.YEAR, year);
+                        innerCal.set(Calendar.MONTH, month);
+                        innerCal.set(Calendar.DATE, day);
+
+                        mSelectedUserDate = new SimpleDateFormat("yyyy/MM/dd E요일", Locale.KOREAN).format(innerCal.getTime());
+                        mTvDate.setText(mSelectedUserDate);
+                    }
+                }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE));
+                dialog.show();  // 다이얼로그 (팝업) 활성화!
                 break;
         }
     }
