@@ -134,7 +134,7 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
                                         diaryDetailIntent.putExtra("mode", "modify");         // 수정하기 모드로 설정
                                         mContext.startActivity(diaryDetailIntent);
                                     } else {
-                                        // 삭제 하기 버튼 눌렀을 때..
+                                        // 삭제 하기 버튼 눌렀을 때.
                                         // delete database data
                                         mDatabaseHelper.setDeleteDiaryList(diaryModel.getWriteDate());
 
