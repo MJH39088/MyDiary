@@ -46,7 +46,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {  // SQLite = 안드로이
         db.execSQL("UPDATE DiaryInfo Set title = '" + _title + "', content = '" + _content + "', weatherType = '" + _weatherType + "', userDate = '" + _userDate + "', writeDate = '" + _writeDate + "' WHERE writeDate = '" + _beforeDate + "'");
     }
 
-    // 기존 작성 데이터를 샂게한다. ( DELETE ) - delete
+    // 기존 작성 데이터를 삭제한다. ( DELETE ) - delete
     public void setDeleteDiaryList(String _writeDate) {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DELETE FROM DiaryInfo WHERE writeDate = '" + _writeDate + "'");
