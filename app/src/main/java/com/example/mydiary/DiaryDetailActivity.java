@@ -3,6 +3,7 @@ package com.example.mydiary;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.radiobutton.MaterialRadioButton;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -56,6 +59,23 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
         mSelectedUserDate = new SimpleDateFormat("yyyy/MM/dd E요일", Locale.KOREAN).format(new Date());
         // String 값인 mSelectedUserDate(현재 날짜)를 mTvDate에 넣는다.
         mTvDate.setText(mSelectedUserDate);
+
+        // 이전 액티비티로부터 값을 전달 받기
+        Intent intent = getIntent();
+        if (intent.getExtras() != null) {
+            // intent putExtra 했던 데이터가 존재한다면 내부를 수행한다.
+            DiaryModel diaryModel = (DiaryModel) intent.getSerializableExtra("diaryModel");
+            mDetailMode = intent.getStringExtra("mode");
+            mBeforeDate = diaryModel.getWriteDate(); // 게시글 database update 쿼리문 처리ㅡㄹ 위해서 여기서 받아둠.
+
+            // 넘겨받은 값을 활용해서 각 필드들에 설정해주기
+            mEtTitle.setText(diaryModel.getTitle());
+            mEtContent.setText(diaryModel.getContent());
+            int weatherType = diaryModel.getWeatherType();
+            ((MaterialRadioButton) mRgWeather.getChildAt(weatherType)).setChecked(true);
+            mTvDate.setText(diaryModel.getUserDate());
+
+        }
     }
 
     @Override

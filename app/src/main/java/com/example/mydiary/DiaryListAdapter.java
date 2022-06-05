@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.ViewHolder> {
     ArrayList<DiaryModel> mLstDiary;        // 다이어리 데이터들을 들고 있는 자료형 배열
     Context mContext;
+    DatabaseHelper mDatabaseHelper;         // 데이터베이스 헬퍼 클래스 유틸 객체
 
     @NonNull
     @Override
@@ -26,6 +27,7 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
         // 아이템 뷰가 최초로 생성이 될 때 호출되는 곳 = 생성주기 시작이 되는 곳
 
         mContext = parent.getContext();
+        mDatabaseHelper = new DatabaseHelper(mContext); // mContext 데이터를 DatabaseHelper에 보내준다
         View holder = LayoutInflater.from(mContext).inflate(R.layout.list_item_diary, parent, false);
         return new ViewHolder(holder);
     }
@@ -133,6 +135,10 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
                                         mContext.startActivity(diaryDetailIntent);
                                     } else {
                                         // 삭제 하기 버튼 눌렀을 때..
+                                        // delete database data
+                                        mDatabaseHelper.setDeleteDiaryList(diaryModel.getWriteDate());
+
+                                        //delete ui
                                         mLstDiary.remove(currentPositon);       //배열에서 제거함 (데이터)
                                         //notify는 새로고침 즉 제거하면서 UI를 고친다는 의미 배열도 지워야 되고 UI도 지워야 됨
                                         notifyItemRemoved(currentPositon);      //리스트 뷰에서 제거함
