@@ -29,11 +29,16 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
     private String mBeforeDate = "";        // intent로 받아낸 게시글 기존 작성 일자
     private String mDetailMode = "";        // intent로 받아낸 게시글 모드
 
+    private DatabaseHelper mDatabaseHelper; // database 유틸 객체
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary_detail);
+
+        // Database 객체 생성
+        mDatabaseHelper = new DatabaseHelper(this);
 
         mTvDate = findViewById(R.id.tv_date);                   // 일시 설정 텍스트
         mEtTitle = findViewById(R.id.et_title);                 // 제목 입력 필드
@@ -85,12 +90,13 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
                 String content = mEtContent.getText().toString();   // 내용 입력 값 toString으로 String 값으로 변환
                 String userDate = mSelectedUserDate;                // 사용자가 선택한 일시
 
-                String writeDate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.KOREAN).format(new Date());
+                String writeDate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.KOREAN).format(new Date()); // 작성 완료 누른 시점의 일시
 
                 // 데이터베이스에 저장
+                mDatabaseHelper.setInsertDiaryList(title, content, mSelectedWeatherType, userDate, writeDate);
+                Toast.makeText(this, "다이어리 동륵이 완료되었습니다.", Toast.LENGTH_SHORT).show();
 
                 finish(); // 현재 액티비티 종료
-
                 break;
             case R.id.tv_date:
                 // 일시 설정 텍스트
@@ -99,7 +105,7 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
                 DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        // 달력에 선택 된 (년, 월, 일)을 가지고와서 다시 캘린더 함수에 넣어줘서 사용자가 선태갛ㄴ 요일을 알아낸다.
+                        // 달력에 선택 된 (년, 월, 일)을 가지고와서 다시 캘린더 함수에 넣어줘서 사용자가 선택한 요일을 알아낸다.
                         Calendar innerCal = Calendar.getInstance();
                         innerCal.set(Calendar.YEAR, year);
                         innerCal.set(Calendar.MONTH, month);
