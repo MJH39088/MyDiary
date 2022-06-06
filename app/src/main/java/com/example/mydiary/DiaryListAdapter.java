@@ -152,7 +152,9 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
         }
     }
 
-    public void setSampleList(ArrayList<DiaryModel> lstDiary) {
+    public void setListInit(ArrayList<DiaryModel> lstDiary) {
+        // 데이터 리스트 update
         mLstDiary = lstDiary;
+        notifyDataSetChanged(); // 리스트 뷰 새로고침
     }
 }
