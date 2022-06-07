@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mydiary">
+    package="com.MyDiaryProj.mydiary">
 
     <application
         android:allowBackup="true"
@@ -10,11 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyDiary">
         <activity
-            android:name=".DiaryDetailActivity"
+            android:name="com.MyDiaryProj.mydiary.DiaryDetailActivity"
             android:windowSoftInputMode="adjustPan"
             android:exported="true" />
         <activity
-            android:name=".SplashActivity"
+            android:name="com.MyDiaryProj.mydiary.SplashActivity"
             android:exported="true">
 
             <!-- 시작화면 보여주는 코드 -->
@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.MyDiaryProj.mydiary.MainActivity"
             android:exported="true"></activity>
     </application>
 

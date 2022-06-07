@@ -1,4 +1,4 @@
-package com.example.mydiary;
+package com.MyDiaryProj.mydiary;
 
 /* 데이터 베이스 관리 유틸 클래스 */
 

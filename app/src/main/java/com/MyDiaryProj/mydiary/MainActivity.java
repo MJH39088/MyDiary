@@ -1,4 +1,4 @@
-package com.example.mydiary;
+package com.MyDiaryProj.mydiary;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;

@@ -1,4 +1,4 @@
-package com.example.mydiary;
+package com.MyDiaryProj.mydiary;
 
 import android.app.AlertDialog;
 import android.content.Context;

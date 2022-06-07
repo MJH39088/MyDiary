@@ -1,10 +1,9 @@
-package com.example.mydiary;
+package com.MyDiaryProj.mydiary;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;

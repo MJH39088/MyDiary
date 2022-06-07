@@ -1,4 +1,4 @@
-package com.example.mydiary;
+package com.MyDiaryProj.mydiary;
 
 import java.io.Serializable;
 
