@@ -38,7 +38,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="나의 다이어리"
+                android:text="간단 일기장"
                 android:layout_marginLeft="8dp"
                 android:textColor="@color/black"
                 android:textSize="24sp"
@@ -71,6 +71,8 @@
         android:backgroundTint="#448AFF"
         app:tint="@color/white"
         android:src="@drawable/img_pencil"/>
+
+
 
 
 </FrameLayout>
