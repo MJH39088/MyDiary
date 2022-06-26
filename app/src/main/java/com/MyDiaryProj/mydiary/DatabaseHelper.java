@@ -40,7 +40,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {  // SQLite = 안드로이
     // 다이어리 작성 데이터를 DB 에 저장한다. ( INSERT ) - create
     public void setInsertDiaryList(String _title, String _content, int _weatherType, String _userDate, String _writeDate) {
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("INSERT INTO DiaryInfo (title, content, weatherType, userDate, writeDate) VALUES ('"  + _title + "', '" + _content + "', '" + _weatherType + "', '" + _userDate + "', '" + _writeDate + "')");
+        db.execSQL("INSERT INTO DiaryInfo (title, content, weatherType, userDate, writeDate) VALUES "
+                + "('"  + _title + "', '" + _content + "', '" + _weatherType + "', '" + _userDate + "', '" + _writeDate + "')");
     }
 
     // 다이어리 작성 데이터를 조회하여 가지고 온다. ( SELECT ) - read
@@ -81,7 +82,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {  // SQLite = 안드로이
     public void setUpdateDiaryList(String _title, String _content, int _weatherType, String _userDate, String _writeDate, String _beforeDate) {
         // _beforeDate는 기존에 작성했던 날짜를 키값으로 사용함으로서 실제 마지막으로 작성했던 데이터가 어떤 것인지 구분하고 접근하기 위해 사용
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("UPDATE DiaryInfo Set title = '" + _title + "', content = '" + _content + "', weatherType = '" + _weatherType + "', userDate = '" + _userDate + "', writeDate = '" + _writeDate + "' WHERE writeDate = '" + _beforeDate + "'");
+        db.execSQL("UPDATE DiaryInfo Set title = '" + _title + "', content = '" + _content + "', weatherType = '"
+                + _weatherType + "', userDate = '" + _userDate + "', writeDate = '" + _writeDate + "' WHERE writeDate = '" + _beforeDate + "'");
     }
 
     // 기존 작성 데이터를 삭제한다. ( DELETE ) - delete

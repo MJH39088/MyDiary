@@ -67,12 +67,28 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+    /**
+     * Activity LifeCycle
+     * 날짜 갱신
+     */
     // Ctrl + o
     @Override
     protected void onResume() {
         super.onResume();
         // 액티비티가 재시작이 될 때 실행, onCreate와도 같이 실행
         // get load list
+        setLoadRecentList();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        setLoadRecentList();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
         setLoadRecentList();
     }
 
