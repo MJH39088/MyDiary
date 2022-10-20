@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         mLstDiary = new ArrayList<>();
 
-        //fb 입력하면 findViewByID가 바로 나온다
+        //fb 입력하면 findViewByID가 바로 나온다.
         mRvDiary = findViewById(R.id.rv_diary);
 
         mAdapter = new DiaryListAdapter(); // 리사이클러 뷰 어댑터 인스턴스 생성
