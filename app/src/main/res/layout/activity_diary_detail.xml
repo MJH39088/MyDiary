@@ -134,42 +134,42 @@
             android:orientation="horizontal">
 
             <RadioButton
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:button="@null"
                 android:background="@drawable/selector_btn_sun"/>
 
             <RadioButton
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginLeft="16dp"
                 android:button="@null"
                 android:background="@drawable/selector_btn_cloudy"/>
 
             <RadioButton
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginLeft="16dp"
                 android:button="@null"
                 android:background="@drawable/selector_btn_cloud"/>
 
             <RadioButton
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginLeft="16dp"
                 android:button="@null"
                 android:background="@drawable/selector_btn_bad_cloud"/>
 
             <RadioButton
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginLeft="16dp"
                 android:button="@null"
                 android:background="@drawable/selector_btn_rainy"/>
 
             <RadioButton
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginLeft="16dp"
                 android:button="@null"
                 android:background="@drawable/selector_btn_snowy"/>
