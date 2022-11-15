@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -21,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<DiaryModel> mLstDiary;    // 리스트에 표현할 다이어리 데이터들 (배열)
     DatabaseHelper mDatabaseHelper;     // 데이터베이스 헬퍼 클래스 유틸 객체
     ImageView iv_question;
+    ImageView iv_settings;
+    String themeColor;
 
     // var는 전역변수 사용 가능 val은 한 곳에서만 사용 가능 (메소드 안에서만)
     @Override
@@ -28,7 +31,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        themeColor = ThemeUtil.modLoad(getApplicationContext());
+        ThemeUtil.applyTheme(themeColor);
+
         iv_question = findViewById(R.id.iv_question);
+        iv_settings = findViewById(R.id.iv_settings);
+        iv_settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ModDialog.class);
+                startActivity(intent);
+            }
+        });
+
         // 데이터베이스 객체 초기화
         mDatabaseHelper = new DatabaseHelper(this);
         mLstDiary = new ArrayList<>();
