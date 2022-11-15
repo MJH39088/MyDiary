@@ -1,11 +1,14 @@
 package com.MyDiaryProj.mydiary;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -17,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     DiaryListAdapter mAdapter;          // 리사이클러 뷰와 연동할 어댑터
     ArrayList<DiaryModel> mLstDiary;    // 리스트에 표현할 다이어리 데이터들 (배열)
     DatabaseHelper mDatabaseHelper;     // 데이터베이스 헬퍼 클래스 유틸 객체
+    ImageView iv_question;
 
     // var는 전역변수 사용 가능 val은 한 곳에서만 사용 가능 (메소드 안에서만)
     @Override
@@ -24,11 +28,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        iv_question = findViewById(R.id.iv_question);
         // 데이터베이스 객체 초기화
         mDatabaseHelper = new DatabaseHelper(this);
-
         mLstDiary = new ArrayList<>();
-
         //fb 입력하면 findViewByID가 바로 나온다.
         mRvDiary = findViewById(R.id.rv_diary);
 
@@ -65,7 +68,24 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        iv_question.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setMessage("작성한 일기를 길게 누르면 수정과 삭제가 가능해요.");
 
+                builder.setNegativeButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        return;
+                    }
+                });
+
+                builder.setTitle("도움말");
+                builder.show();
+
+            }
+        });
     }
     /**
      * Activity LifeCycle

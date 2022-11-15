@@ -32,7 +32,8 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/img_logo_diary"/>
+                android:src="@drawable/img_logo_diary"
+                android:layout_marginLeft="106dp"/>
 
             <!-- 서버와 클라이언트 안전한 연결을 위한 AppCompat -->
             <androidx.appcompat.widget.AppCompatTextView
@@ -44,6 +45,18 @@
                 android:textSize="24sp"
                 android:textStyle="bold"/>
 
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/question"
+                android:id="@+id/iv_question"
+                android:layout_marginRight="10dp"
+                android:layout_gravity="end" />
 
         </LinearLayout>
 

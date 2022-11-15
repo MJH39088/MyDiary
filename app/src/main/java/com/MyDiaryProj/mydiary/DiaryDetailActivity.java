@@ -2,7 +2,9 @@ package com.MyDiaryProj.mydiary;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -105,7 +107,49 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
         switch (view.getId()) {
             case R.id.iv_back:
                 // 뒤로가기 버튼 | 생명 주기가 파괴되면 자동으로 전의 액티비티로 감.
-                finish();
+                if (mDetailMode.equals("modify")) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setMessage("수정한 내용이 저장되지 않고 나가져요.");
+
+                    builder.setNegativeButton("계속 수정하기", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            return;
+                        }
+                    });
+                    builder.setPositiveButton("나가기", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            finish();
+                        }
+                    });
+
+                    builder.setTitle("경고");
+                    builder.show();
+                } else if (mDetailMode.equals("detail")) {
+                    // 상세보기 모드 | 뒤로가기 버튼을 누르면 경고 창이 뜨지 않고 바로 종료.
+                    finish();
+                } else {
+                    // 작성하기 모드 | 뒤로가기 버튼을 누르면 경고 창이 뜸.
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setMessage("작성한 내용이 저장되지 않고 나가져요.");
+
+                    builder.setNegativeButton("계속 작성하기", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            return;
+                        }
+                    });
+                    builder.setPositiveButton("나가기", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            finish();
+                        }
+                    });
+
+                    builder.setTitle("경고");
+                    builder.show();
+                }
                 break;
             case R.id.iv_check:
                 // 작성 완료 버튼 | indexOfChild는 라디오 그룹의 라디오 버튼을 찾기 위함
@@ -168,6 +212,54 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
                 }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE));
                 dialog.show();  // 다이얼로그 (팝업) 활성화!
                 break;
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mDetailMode.equals("modify")) {
+            // 수정 모드 | 뒤로가기 버튼을 누르면 경고 창이 뜸.
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("수정한 데이터가 저장되지 않고 나가집니다.");
+
+            builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    return;
+                }
+            });
+            builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    finish();
+                }
+            });
+
+            builder.setTitle("경고");
+            builder.show();
+        } else if (mDetailMode.equals("detail")) {
+            // 상세보기 모드 | 뒤로가기 버튼을 누르면 경고 창이 뜨지 않고 바로 종료.
+            finish();
+        } else {
+            // 작성하기 모드 | 뒤로가기 버튼을 누르면 경고 창이 뜸.
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("작성한 데이터가 저장되지 않고 나가집니다.");
+
+            builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    return;
+                }
+            });
+            builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    finish();
+                }
+            });
+
+            builder.setTitle("경고");
+            builder.show();
         }
     }
 }
