@@ -188,7 +188,7 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
                 } else {
                     // 게시글 작성 모드
                     mDatabaseHelper.setInsertDiaryList(title, content, mSelectedWeatherType, userDate, writeDate);
-                    Toast.makeText(this, "다이어리 동륵이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "다이어리 등록이 완료되었습니다.", Toast.LENGTH_SHORT).show();
                 }
                 finish(); // 현재 액티비티 종료
                 break;
@@ -222,7 +222,7 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("수정한 내용이 저장되지 않고 나가져요.");
 
-            builder.setNegativeButton("계속 작성하기", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton("계속 수정하기", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     return;
