@@ -220,15 +220,15 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
         if (mDetailMode.equals("modify")) {
             // 수정 모드 | 뒤로가기 버튼을 누르면 경고 창이 뜸.
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("수정한 데이터가 저장되지 않고 나가집니다.");
+            builder.setMessage("수정한 내용이 저장되지 않고 나가져요.");
 
-            builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton("계속 작성하기", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     return;
                 }
             });
-            builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+            builder.setPositiveButton("나가기", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     finish();
@@ -243,15 +243,15 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
         } else {
             // 작성하기 모드 | 뒤로가기 버튼을 누르면 경고 창이 뜸.
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("작성한 데이터가 저장되지 않고 나가집니다.");
+            builder.setMessage("작성한 내용이 저장되지 않고 나가져요.");
 
-            builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton("계속 작성하기", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     return;
                 }
             });
-            builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+            builder.setPositiveButton("나가기", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     finish();
