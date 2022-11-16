@@ -3,12 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/AndroidProjects/MyDiary/app/src/main/res/drawable/img_pencil.xml" value="0.1805" />
-        <entry key="..\:/AndroidProjects/MyDiary/app/src/main/res/layout/activity_diary_detail.xml" value="0.33" />
-        <entry key="..\:/AndroidProjects/MyDiary/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/AndroidProjects/MyDiary/app/src/main/res/layout/activity_moddialog.xml" value="0.33" />
-        <entry key="..\:/AndroidProjects/MyDiary/app/src/main/res/layout/activity_splash.xml" value="0.38645833333333335" />
-        <entry key="..\:/AndroidProjects/MyDiary/app/src/main/res/layout/list_item_diary.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjt/app/src/main/res/drawable/img_pencil.xml" value="0.235" />
         <entry key="..\:/AndroidStudioProjt/app/src/main/res/drawable/selector_btn_bad_cloud.xml" value="0.235" />
         <entry key="..\:/AndroidStudioProjt/app/src/main/res/drawable/selector_btn_cloud.xml" value="0.235" />
@@ -21,10 +15,15 @@
         <entry key="..\:/AndroidStudioProjt/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjt/app/src/main/res/layout/activity_splash.xml" value="0.38645833333333335" />
         <entry key="..\:/AndroidStudioProjt/app/src/main/res/layout/list_item_diary.xml" value="0.38051282051282054" />
+        <entry key="..\:/gjalswo/MyDiary/app/src/main/res/layout/activity_diary_detail.xml" value="0.28125" />
+        <entry key="..\:/gjalswo/MyDiary/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/gjalswo/MyDiary/app/src/main/res/layout/activity_moddialog.xml" value="0.36614583333333334" />
+        <entry key="..\:/gjalswo/MyDiary/app/src/main/res/layout/activity_splash.xml" value="0.25" />
+        <entry key="..\:/gjalswo/MyDiary/app/src/main/res/layout/list_item_diary.xml" value="0.34010416666666665" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
