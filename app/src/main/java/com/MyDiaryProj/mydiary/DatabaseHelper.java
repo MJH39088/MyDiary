@@ -23,7 +23,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {  // SQLite = 안드로이
     @Override
     public void onCreate(SQLiteDatabase db) {
         // Database Create
-        // SQL 이란 Database에 접근하기 위해서 명령을 내리는 쿼리문
         // 기존에 테이블이 존재하지 않을 때에만 만드는 명령문 테이블 생성! (최초 1회만 생성)
         db.execSQL("CREATE TABLE IF NOT EXISTS DiaryInfo (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +

@@ -127,6 +127,30 @@ public class MainActivity extends AppCompatActivity {
         setLoadRecentList();
     }
 
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("앱을 종료하시겠습니까?");
+
+        builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                finish();
+            }
+        });
+
+        builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                return;
+            }
+        });
+        builder.setTitle("실험용");
+        builder.show();
+        //super.onBackPressed();
+    }
+
     private void setLoadRecentList() {
         // 최근 데이터베이스 정보를 가지고 와서 리사이클러뷰에 갱신해준다.
 

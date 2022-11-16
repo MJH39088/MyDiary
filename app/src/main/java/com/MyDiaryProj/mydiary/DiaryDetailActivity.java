@@ -1,8 +1,8 @@
 package com.MyDiaryProj.mydiary;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -108,6 +108,7 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
             case R.id.iv_back:
                 // 뒤로가기 버튼 | 생명 주기가 파괴되면 자동으로 전의 액티비티로 감.
                 if (mDetailMode.equals("modify")) {
+
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
                     builder.setMessage("수정한 내용이 저장되지 않고 나가져요.");
 
@@ -146,7 +147,6 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
                             finish();
                         }
                     });
-
                     builder.setTitle("경고");
                     builder.show();
                 }
@@ -159,7 +159,7 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
                 // 입력필드 작성란이 비어있는지 체크
                 if (mEtTitle.getText().length() == 0 || mEtContent.getText().length() == 0) {
                     // error | Toast Tab을 누르면 자동으로 완성됨
-                    Toast.makeText(this, "입력되지 않은 필드가 존재합니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "입력되지 않은 내용이 존재해요.", Toast.LENGTH_SHORT).show();
                     return; // 밑의 로직을 태우지 않고 되돌려보냄..!
                 }
 
@@ -184,11 +184,11 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
                 if (mDetailMode.equals("modify")) {
                     // 게시글 수정 모드
                     mDatabaseHelper.setUpdateDiaryList(title, content, mSelectedWeatherType, userDate, writeDate, mBeforeDate);
-                    Toast.makeText(this, "다이어리 수정이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "다이어리 수정이 완료됐어요.", Toast.LENGTH_SHORT).show();
                 } else {
                     // 게시글 작성 모드
                     mDatabaseHelper.setInsertDiaryList(title, content, mSelectedWeatherType, userDate, writeDate);
-                    Toast.makeText(this, "다이어리 등록이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "다이어리 등록이 완료됐어요.", Toast.LENGTH_SHORT).show();
                 }
                 finish(); // 현재 액티비티 종료
                 break;

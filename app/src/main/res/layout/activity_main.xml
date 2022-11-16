@@ -34,7 +34,8 @@
                 android:layout_height="30dp"
                 android:src="@drawable/settings"
                 android:layout_marginLeft="15dp"
-                android:id="@+id/iv_settings"/>
+                android:id="@+id/iv_settings"
+                android:tint="@color/black"/>
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="30dp"
@@ -64,7 +65,8 @@
                 android:src="@drawable/question"
                 android:id="@+id/iv_question"
                 android:layout_marginRight="10dp"
-                android:layout_gravity="end" />
+                android:layout_gravity="end"
+                android:tint="@color/black"/>
 
         </LinearLayout>
 
