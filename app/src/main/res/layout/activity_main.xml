@@ -34,13 +34,14 @@
                 android:layout_height="30dp"
                 android:src="@drawable/settings"
                 android:layout_marginLeft="15dp"
-                android:id="@+id/iv_settings"/>
+                android:id="@+id/iv_settings"
+                android:tint="@color/black"/>
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/img_logo_diary"
-                android:layout_marginLeft="50dp"
+                android:layout_marginLeft="40dp"
                 />
 
             <!-- 서버와 클라이언트 안전한 연결을 위한 AppCompat -->
@@ -64,7 +65,8 @@
                 android:src="@drawable/question"
                 android:id="@+id/iv_question"
                 android:layout_marginRight="10dp"
-                android:layout_gravity="end" />
+                android:layout_gravity="end"
+                android:tint="@color/black"/>
 
         </LinearLayout>
 

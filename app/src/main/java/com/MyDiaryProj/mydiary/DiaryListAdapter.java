@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -142,6 +143,7 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
                                         mLstDiary.remove(currentPositon);       //배열에서 제거함 (데이터)
                                         //notify는 새로고침 즉 제거하면서 UI를 고친다는 의미 배열도 지워야 되고 UI도 지워야 됨
                                         notifyItemRemoved(currentPositon);      //리스트 뷰에서 제거함
+                                        Toast.makeText(view.getContext(), "선택한 일기를 삭제했어요.", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             }).show();

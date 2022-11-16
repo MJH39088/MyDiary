@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#FF121212</color>
+    <color name="black">#FFFFFFFF</color>
+    <color name="pencil_background">#FF018786</color>
+    <color name="pencil_pen">#FFFFFF</color>
+</resources>

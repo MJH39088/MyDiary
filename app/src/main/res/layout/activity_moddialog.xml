@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:text="라이트 모드"
             android:textSize="20dp"
-            android:id="@+id/r_btn_ligth"
+            android:id="@+id/r_btn_light"
             android:textColor="@color/black"/>
         <RadioButton
             android:layout_width="wrap_content"

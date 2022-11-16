@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 public class ModDialog extends Activity {
 
     Button close_btn;
-    RadioButton r_btn_ligth, r_btn_dark;
+    RadioButton r_btn_light, r_btn_dark;
     String themeColor;
 
     @Override
@@ -23,14 +23,17 @@ public class ModDialog extends Activity {
         setContentView(R.layout.activity_moddialog);
 
         r_btn_dark = findViewById(R.id.r_btn_dark);
-        r_btn_ligth = findViewById(R.id.r_btn_ligth);
+        r_btn_light = findViewById(R.id.r_btn_light);
 
-        r_btn_ligth.setOnClickListener(new View.OnClickListener() {
+        r_btn_light.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 themeColor = ThemeUtil.LIGHT_MODE;
                 ThemeUtil.applyTheme(themeColor);
                 ThemeUtil.modSave(getApplicationContext(), themeColor);
+                if (r_btn_light.isEnabled()) {
+                    r_btn_dark.setChecked(false);
+                }
             }
         });
 
@@ -40,6 +43,9 @@ public class ModDialog extends Activity {
                 themeColor = ThemeUtil.DARK_MODE;
                 ThemeUtil.applyTheme(themeColor);
                 ThemeUtil.modSave(getApplicationContext(), themeColor);
+                if(r_btn_dark.isEnabled()) {
+                    r_btn_light.setChecked(false);
+                }
             }
         });
 
