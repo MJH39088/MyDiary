@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("앱을 종료하시겠습니까?");
+        builder.setMessage("앱을 종료하시겠어요?");
 
         builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
             @Override
@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
         });
-        builder.setTitle("실험용");
+        builder.setTitle("확인");
         builder.show();
         //super.onBackPressed();
     }

@@ -159,7 +159,7 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
                 // 입력필드 작성란이 비어있는지 체크
                 if (mEtTitle.getText().length() == 0 || mEtContent.getText().length() == 0) {
                     // error | Toast Tab을 누르면 자동으로 완성됨
-                    Toast.makeText(this, "입력되지 않은 내용이 존재해요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "입력하지 않은 내용이 존재해요.", Toast.LENGTH_SHORT).show();
                     return; // 밑의 로직을 태우지 않고 되돌려보냄..!
                 }
 
