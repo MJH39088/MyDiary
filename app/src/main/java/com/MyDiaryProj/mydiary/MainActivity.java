@@ -24,12 +24,14 @@ public class MainActivity extends AppCompatActivity {
     ImageView iv_question;
     ImageView iv_settings;
     String themeColor;
+    private AlertDialog.Builder builder;
 
     // var는 전역변수 사용 가능 val은 한 곳에서만 사용 가능 (메소드 안에서만)
     @Override
     protected void onCreate(Bundle savedInstanceState) { // 액티비티가 시작할 때 최초 1회만 호출
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        builder = new AlertDialog.Builder(this);
 
         themeColor = ThemeUtil.modLoad(getApplicationContext());
         ThemeUtil.applyTheme(themeColor);
@@ -86,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
         iv_question.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setMessage("작성한 일기를 길게 누르면 수정과 삭제가 가능해요.");
 
                 builder.setNegativeButton("확인", new DialogInterface.OnClickListener() {
@@ -129,10 +130,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("앱을 종료하시겠어요?");
+        this.builder.setMessage("앱을 종료하시겠어요?");
 
-        builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+        this.builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -140,15 +140,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+        this.builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 return;
             }
         });
-        builder.setTitle("확인");
-        builder.show();
-        //super.onBackPressed();
+        this.builder.setTitle("확인");
+        this.builder.show();
+
     }
 
     private void setLoadRecentList() {

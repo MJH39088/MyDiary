@@ -32,7 +32,7 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
     private String mSelectedUserDate = "";  // 사용자가 실제 다이어리에 표시한 일자
     private String mBeforeDate = "";        // intent로 받아낸 게시글 기존 작성 일자
     private String mDetailMode = "";        // intent로 받아낸 게시글 모드
-
+    private AlertDialog.Builder builder;
     private DatabaseHelper mDatabaseHelper; // database 유틸 객체
 
 
@@ -40,7 +40,7 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary_detail);
-
+        builder = new AlertDialog.Builder(this);
         // Database 객체 생성
         mDatabaseHelper = new DatabaseHelper(this);
 
@@ -108,47 +108,45 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
             case R.id.iv_back:
                 // 뒤로가기 버튼 | 생명 주기가 파괴되면 자동으로 전의 액티비티로 감.
                 if (mDetailMode.equals("modify")) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setMessage("수정한 내용이 저장되지 않고 나가져요.");
+                    this.builder.setMessage("수정한 내용이 저장되지 않고 나가져요.");
 
-                    builder.setNegativeButton("계속 수정하기", new DialogInterface.OnClickListener() {
+                    this.builder.setNegativeButton("계속 수정하기", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             return;
                         }
                     });
-                    builder.setPositiveButton("나가기", new DialogInterface.OnClickListener() {
+                    this.builder.setPositiveButton("나가기", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             finish();
                         }
                     });
 
-                    builder.setTitle("경고");
-                    builder.show();
+                    this.builder.setTitle("경고");
+                    this.builder.show();
                 } else if (mDetailMode.equals("detail")) {
                     // 상세보기 모드 | 뒤로가기 버튼을 누르면 경고 창이 뜨지 않고 바로 종료.
                     finish();
                 } else {
                     // 작성하기 모드 | 뒤로가기 버튼을 누르면 경고 창이 뜸.
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setMessage("작성한 내용이 저장되지 않고 나가져요.");
+                    this.builder.setMessage("작성한 내용이 저장되지 않고 나가져요.");
 
-                    builder.setNegativeButton("계속 작성하기", new DialogInterface.OnClickListener() {
+                    this.builder.setNegativeButton("계속 작성하기", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             return;
                         }
                     });
-                    builder.setPositiveButton("나가기", new DialogInterface.OnClickListener() {
+                    this.builder.setPositiveButton("나가기", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             finish();
                         }
                     });
 
-                    builder.setTitle("경고");
-                    builder.show();
+                    this.builder.setTitle("경고");
+                    this.builder.show();
                 }
                 break;
             case R.id.iv_check:
@@ -219,47 +217,45 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
     public void onBackPressed() {
         if (mDetailMode.equals("modify")) {
             // 수정 모드 | 뒤로가기 버튼을 누르면 경고 창이 뜸.
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("수정한 내용이 저장되지 않고 나가져요.");
+            this.builder.setMessage("수정한 내용이 저장되지 않고 나가져요.");
 
-            builder.setNegativeButton("계속 수정하기", new DialogInterface.OnClickListener() {
+            this.builder.setNegativeButton("계속 수정하기", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     return;
                 }
             });
-            builder.setPositiveButton("나가기", new DialogInterface.OnClickListener() {
+            this.builder.setPositiveButton("나가기", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     finish();
                 }
             });
 
-            builder.setTitle("경고");
-            builder.show();
+            this.builder.setTitle("경고");
+            this.builder.show();
         } else if (mDetailMode.equals("detail")) {
             // 상세보기 모드 | 뒤로가기 버튼을 누르면 경고 창이 뜨지 않고 바로 종료.
             finish();
         } else {
             // 작성하기 모드 | 뒤로가기 버튼을 누르면 경고 창이 뜸.
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("작성한 내용이 저장되지 않고 나가져요.");
+            this.builder.setMessage("작성한 내용이 저장되지 않고 나가져요.");
 
-            builder.setNegativeButton("계속 작성하기", new DialogInterface.OnClickListener() {
+            this.builder.setNegativeButton("계속 작성하기", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     return;
                 }
             });
-            builder.setPositiveButton("나가기", new DialogInterface.OnClickListener() {
+            this.builder.setPositiveButton("나가기", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     finish();
                 }
             });
 
-            builder.setTitle("경고");
-            builder.show();
+            this.builder.setTitle("경고");
+            this.builder.show();
         }
     }
 }
