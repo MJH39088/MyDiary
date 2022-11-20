@@ -155,7 +155,7 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
                                 }
                             }).show();
 
-                    return false;
+                    return true; //onClick 동시 실행 안되게 true 설정
                 }
             });
         }
