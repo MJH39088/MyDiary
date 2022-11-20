@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:layout_margin="16dp"
     android:orientation="vertical"
+    android:background="@color/backgroundwhite"
     tools:context=".DiaryDetailActivity">
 
     <!-- HEADER -->
@@ -31,7 +32,9 @@
             android:text="새 글 작성"
             android:textColor="@color/black"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="@font/humanbumsuk"
+            android:layout_gravity="center_vertical"/>
 
         <!-- 공간만 차지하는 역할 weight의 가중치를 1로 둬서 check ImageView를 오른쪽으로 밀어버렸다. -->
         <Space
@@ -60,9 +63,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="제목"
-            android:textSize="18sp"
+            android:id="@+id/tv_DetailTitle"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:fontFamily="@font/humanbumsuk"/>
 
         <!-- 사용자에게 입력을 받는 input 필드 싱글 라인(한 줄만 입력 가능) 멀티 라인(엔터 여러줄 입력 가능) -->\
         <!-- maxLines : 줄 제한 maxLength : 글자 수 제한 padding은 내부에서 넓히는 구조 -->
@@ -70,13 +75,14 @@
             android:id="@+id/et_title"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:textSize="14sp"
+            android:textSize="16dp"
             android:textColor="@color/black"
             android:layout_marginTop="8dp"
             android:singleLine="true"
             android:maxLines="1"
             android:maxLength="20"
             android:padding="8dp"
+            android:fontFamily="@font/humanbumsuk"
             android:background="@drawable/shape_input_field"/>
 
     </LinearLayout>
@@ -92,9 +98,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="일시"
-            android:textSize="18sp"
+            android:id="@+id/tv_DetailDate"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:fontFamily="@font/humanbumsuk" />
 
         <TextView
             android:id="@+id/tv_date"
@@ -103,7 +111,7 @@
             android:textColor="#039be5"
             android:layout_marginTop="4dp"
             android:textStyle="bold"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:text="2022/05/27 금요일"/>
 
     </LinearLayout>
@@ -119,9 +127,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="날씨"
-            android:textSize="18sp"
+            android:id="@+id/tv_DetailWeather"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:fontFamily="@font/humanbumsuk" />
 
         <!-- RADIO BUTTON GROUP -->
         <RadioGroup
@@ -130,7 +140,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:padding="8dp"
-            android:background="#504f4f"
+            android:background="@drawable/shape_input_field"
             android:orientation="horizontal">
 
             <RadioButton
@@ -190,9 +200,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="내용"
-            android:textSize="18sp"
+            android:id="@+id/tv_DetailContent"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:fontFamily="@font/humanbumsuk" />
 
         <EditText
             android:id="@+id/et_content"
@@ -200,7 +212,7 @@
             android:layout_height="wrap_content"
             android:gravity="top|left"
             android:inputType="textMultiLine"
-            android:textSize="14sp"
+            android:textSize="16dp"
             android:textColor="@color/black"
             android:layout_marginTop="8dp"
             android:singleLine="true"
@@ -211,6 +223,7 @@
             android:scrollHorizontally="false"
             android:overScrollMode="always"
             android:padding="8dp"
+            android:fontFamily="@font/humanbumsuk"
             android:background="@drawable/shape_input_field"/>
 
     </LinearLayout>

@@ -2,16 +2,28 @@ package com.MyDiaryProj.mydiary;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
+import android.graphics.fonts.Font;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -23,7 +35,12 @@ public class MainActivity extends AppCompatActivity {
     DatabaseHelper mDatabaseHelper;     // 데이터베이스 헬퍼 클래스 유틸 객체
     ImageView iv_question;
     ImageView iv_settings;
-    String themeColor;
+    DrawerLayout drawerLayout;
+    ImageView iv_menu;
+    TextView tvHome;
+    TextView tv_Change;
+    TextView tv_help;
+    TextView tv_developer;
     private AlertDialog.Builder builder;
 
     // var는 전역변수 사용 가능 val은 한 곳에서만 사용 가능 (메소드 안에서만)
@@ -31,13 +48,26 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) { // 액티비티가 시작할 때 최초 1회만 호출
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // 데이터베이스 객체 초기화
+        mDatabaseHelper = new DatabaseHelper(this);
+        mLstDiary = new ArrayList<>();
+        mAdapter = new DiaryListAdapter(); // 리사이클러 뷰 어댑터 인스턴스 생성
         builder = new AlertDialog.Builder(this);
 
-        themeColor = ThemeUtil.modLoad(getApplicationContext());
-        ThemeUtil.applyTheme(themeColor);
-
+        FloatingActionButton floatingActionButton = findViewById(R.id.btn_write);
         iv_question = findViewById(R.id.iv_question);
         iv_settings = findViewById(R.id.iv_settings);
+        mRvDiary = findViewById(R.id.rv_diary);
+        drawerLayout = findViewById(R.id.drawerLayout);
+        iv_menu = findViewById(R.id.iv_menu);
+        tv_Change = (TextView) findViewById(R.id.tvChange);
+        tvHome = findViewById(R.id.tvHome);
+        tv_help = (TextView) findViewById(R.id.tv_help);
+        tv_developer = (TextView) findViewById(R.id.tv_developer);
+
+        mRvDiary.setAdapter(mAdapter);
+
         iv_settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,13 +76,104 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // 데이터베이스 객체 초기화
-        mDatabaseHelper = new DatabaseHelper(this);
-        mLstDiary = new ArrayList<>();
-        //fb 입력하면 findViewByID가 바로 나온다.
-        mRvDiary = findViewById(R.id.rv_diary);
+        iv_question.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                builder.setMessage("작성한 일기를 길게 누르면 수정과 삭제가 가능해요.");
 
-        mAdapter = new DiaryListAdapter(); // 리사이클러 뷰 어댑터 인스턴스 생성
+                builder.setNegativeButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        return;
+                    }
+                });
+
+                builder.setTitle("도움말");
+                builder.show();
+
+            }
+        });
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 작성하기 버튼을 누를 때 호출되는 곳
+                Intent intent = new Intent(MainActivity.this, DiaryDetailActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        iv_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.openDrawer(GravityCompat.END, true);
+            }
+        });
+
+        tvHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(MainActivity.this, DiaryDetailActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        tv_Change.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ModDialog.class);
+                startActivity(intent);
+            }
+        });
+
+        tv_help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                builder.setMessage("작성한 일기를 길게 누르면 수정과 삭제가 가능해요.");
+
+                builder.setNegativeButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        return;
+                    }
+                });
+
+                builder.setTitle("도움말");
+                builder.show();
+            }
+        });
+
+        tv_developer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                builder.setMessage("email : gjalswo3908@gmail.com");
+
+                builder.setNegativeButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) { return; }
+                });
+
+                builder.setTitle("피드백을 주시면 힘이 나요.");
+                builder.show();
+            }
+        });
+
+//        API 26이상
+//        Typeface typeface1 = getResources().getFont(R.font.nanumsquareroundr);
+//        tv_title.setTypeface(typeface1);
+//        tvLogo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //API 26이하
+//                AssetManager am = getResources().getAssets();
+//                Typeface typeface = Typeface.createFromAsset(am, "nanumsquareroundr.ttf");
+//                tvLogo.setTypeface(typeface);
+//            }
+//        });
+
+//        themeColor = ThemeUtil.modLoad(getApplicationContext());
+//        ThemeUtil.applyTheme(themeColor);
 
         // 다이어리 샘플 아이템 1개 생성
 //        DiaryModel item = new DiaryModel();
@@ -73,35 +194,6 @@ public class MainActivity extends AppCompatActivity {
 //        item2.setWeatherType(3);
 //        mLstDiary.add(item2);
 
-        mRvDiary.setAdapter(mAdapter);
-
-        // 액티비티 (화면)이 실행될 때 가장 먼저 호출되는 곳
-        FloatingActionButton floatingActionButton = findViewById(R.id.btn_write);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // 작성하기 버튼을 누를 때 호출되는 곳
-                Intent intent = new Intent(MainActivity.this, DiaryDetailActivity.class);
-                startActivity(intent);
-            }
-        });
-        iv_question.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                builder.setMessage("작성한 일기를 길게 누르면 수정과 삭제가 가능해요.");
-
-                builder.setNegativeButton("확인", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        return;
-                    }
-                });
-
-                builder.setTitle("도움말");
-                builder.show();
-
-            }
-        });
     }
     /**
      * Activity LifeCycle
@@ -130,25 +222,35 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        this.builder.setMessage("앱을 종료하시겠어요?");
 
-        this.builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+        /** DrawerRecyclerView 열려있으면 닫고 뒤로가기 한번 더 누를 시 화면 종료 */
+        if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
 
-                finish();
-            }
-        });
+            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+            drawerLayout.closeDrawer(GravityCompat.END);
+            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
-        this.builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                return;
-            }
-        });
-        this.builder.setTitle("확인");
-        this.builder.show();
+        } else {
+            this.builder.setMessage("앱을 종료하시겠어요?");
 
+            this.builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                    finish();
+                }
+            });
+
+            this.builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    return;
+                }
+            });
+
+            this.builder.setTitle("확인");
+            this.builder.show();
+        }
     }
 
     private void setLoadRecentList() {

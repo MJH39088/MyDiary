@@ -12,22 +12,39 @@
         <activity
             android:name="com.MyDiaryProj.mydiary.DiaryDetailActivity"
             android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name="com.MyDiaryProj.mydiary.SplashActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
-
             <!-- 시작화면 보여주는 코드 -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name="com.MyDiaryProj.mydiary.MainActivity"
-            android:exported="true"></activity>
-        <activity android:name="com.MyDiaryProj.mydiary.ModDialog" android:theme="@android:style/Theme.Dialog" />
+            android:screenOrientation="portrait"
+            android:exported="true"/>
+        <activity
+            android:name="com.MyDiaryProj.mydiary.ModDialog"
+            android:theme="@android:style/Theme.Dialog" />
+
+<!--        <activity-->
+<!--            android:name=".SettingActivity"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:exported="true" />-->
+
+<!--        <activity-->
+<!--            android:name=".InfoActivity"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:exported="true" />-->
+
+<!--        <activity android:name=".FontDialog"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:exported="true" />-->
 
     </application>
 

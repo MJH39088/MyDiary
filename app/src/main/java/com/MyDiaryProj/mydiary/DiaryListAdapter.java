@@ -1,5 +1,6 @@
 package com.MyDiaryProj.mydiary;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -21,12 +23,13 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
     ArrayList<DiaryModel> mLstDiary;        // 다이어리 데이터들을 들고 있는 자료형 배열
     Context mContext;
     DatabaseHelper mDatabaseHelper;         // 데이터베이스 헬퍼 클래스 유틸 객체
+    //private AlertDialog.Builder builder;
 
     @NonNull
     @Override
     public DiaryListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // 아이템 뷰가 최초로 생성이 될 때 호출되는 곳 = 생성주기 시작이 되는 곳
-
+        //builder = new AlertDialog.Builder(mContext);
         mContext = parent.getContext();
         mDatabaseHelper = new DatabaseHelper(mContext); // mContext 데이터를 DatabaseHelper에 보내준다
         View holder = LayoutInflater.from(mContext).inflate(R.layout.list_item_diary, parent, false);
@@ -58,11 +61,11 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
                 break;
             case 4:
                 // 비
-                holder.iv_weather.setImageResource(R.drawable.img_rainy);
+                holder.iv_weather.setImageResource(R.drawable.img_rainy_gray);
                 break;
             case 5:
                 // 눈
-                holder.iv_weather.setImageResource(R.drawable.img_snowy);
+                holder.iv_weather.setImageResource(R.drawable.img_snowy_gray);
                 break;
         }
         // 날씨 제목, 일시
@@ -81,6 +84,7 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView iv_weather;
+        View view;
         TextView tv_title, tv_user_date;
 
         // 하나의 아이템 뷰
@@ -89,6 +93,7 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
             iv_weather = itemView.findViewById(R.id.iv_weather);        // 날씨 이미지
             tv_title = itemView.findViewById(R.id.tv_title);            // 다이어리 제목
             tv_user_date = itemView.findViewById(R.id.tv_user_date);    // 사용자 지정 날짜
+            view = itemView.findViewById(R.id.view);
 
             // 일반 클릭 (상세 보기)
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -115,6 +120,7 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
                     // 현재 클릭이 된 위치 (배열 개념이어서 첫 시작이 0부터 세는 기준)
                     int currentPositon = getAdapterPosition();
 
+
                     // 현재 클릭 된 리스트 아이템 정보를 가지는 변수
                     DiaryModel diaryModel = mLstDiary.get(currentPositon);
 
@@ -128,6 +134,7 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int position) {
                                     if (position == 0) {
+
                                         // 수정 하기 버튼 눌렀을 때..
                                         // 화면 이동 및 다이어리 데이터 다음 액티비티로 전달
                                         Intent diaryDetailIntent = new Intent(mContext, DiaryDetailActivity.class);

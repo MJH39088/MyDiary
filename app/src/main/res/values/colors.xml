@@ -10,4 +10,14 @@
     <color name="background">@color/white</color>
     <color name="pencil_background">#448AFF</color>
     <color name="pencil_pen">#020715</color>
+    <color name="white1">#FFFFFFFF</color>
+    <color name="backgroundwhite">#FFFFFFFF</color>
+    <color name="DrawerBackground">#FFFFFFFF</color>
+    <color name="lemoncolor">#F0D158</color>
+    <color name="feelgreen">#79D7A0</color>
+    <color name="feelgray">#ced4da</color>
+    <color name="gray2">#ced4da</color>
+    <color name="gray3">#343a40</color>
+    <color name="blackdialog">#000</color>
+    <color name="gray4">#212529</color>
 </resources>

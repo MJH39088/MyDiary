@@ -4,4 +4,7 @@
     <color name="black">#FFFFFFFF</color>
     <color name="pencil_background">#FF018786</color>
     <color name="pencil_pen">#FFFFFF</color>
+    <color name="backgroundwhite">#12121212</color>
+    <color name="DrawerBackground">#000</color>
+    <color name="gray2">#343a40</color>
 </resources>

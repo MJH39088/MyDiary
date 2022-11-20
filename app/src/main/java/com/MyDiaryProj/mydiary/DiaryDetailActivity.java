@@ -40,9 +40,12 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary_detail);
-        builder = new AlertDialog.Builder(this);
+
+        overridePendingTransition(R.anim.anim_window_in, R.anim.anim_window_out);
+
         // Database 객체 생성
         mDatabaseHelper = new DatabaseHelper(this);
+        builder = new AlertDialog.Builder(this);
 
         mTvDate = findViewById(R.id.tv_date);                   // 일시 설정 텍스트
         mEtTitle = findViewById(R.id.et_title);                 // 제목 입력 필드
@@ -67,7 +70,7 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
             // intent putExtra 했던 데이터가 존재한다면 내부를 수행한다.
             DiaryModel diaryModel = (DiaryModel) intent.getSerializableExtra("diaryModel");
             mDetailMode = intent.getStringExtra("mode");
-            mBeforeDate = diaryModel.getWriteDate(); // 게시글 database update 쿼리문 처리ㅡㄹ 위해서 여기서 받아둠.
+            mBeforeDate = diaryModel.getWriteDate(); // 게시글 database update 쿼리문 처리를 위해 여기서 받아둠.
 
             // 넘겨받은 값을 활용해서 각 필드들에 설정해주기
             mEtTitle.setText(diaryModel.getTitle());
@@ -172,6 +175,7 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
                 String title = mEtTitle.getText().toString();       // 제목 입력 값 toString으로 String 값으로 변환
                 String content = mEtContent.getText().toString();   // 내용 입력 값 toString으로 String 값으로 변환
                 String userDate = mSelectedUserDate;                // 사용자가 선택한 일시
+
                 if (userDate.equals("")) {
                     // 별도 날짜 설정을 하지 않은 채로 작성완료를 누를 경우 mTvDate의 날짜를 가져온다.
                     userDate = mTvDate.getText().toString();
@@ -188,7 +192,11 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
                     mDatabaseHelper.setInsertDiaryList(title, content, mSelectedWeatherType, userDate, writeDate);
                     Toast.makeText(this, "다이어리 등록이 완료됐어요.", Toast.LENGTH_SHORT).show();
                 }
-                finish(); // 현재 액티비티 종료
+
+                Intent intent = new Intent(DiaryDetailActivity.this, MainActivity.class);
+                startActivity(intent);
+
+                finish();// 현재 액티비티 종료
                 break;
 
             case R.id.tv_date:
@@ -215,6 +223,7 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onBackPressed() {
+
         if (mDetailMode.equals("modify")) {
             // 수정 모드 | 뒤로가기 버튼을 누르면 경고 창이 뜸.
             this.builder.setMessage("수정한 내용이 저장되지 않고 나가져요.");
@@ -228,6 +237,7 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
             this.builder.setPositiveButton("나가기", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
+
                     finish();
                 }
             });
@@ -236,6 +246,7 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
             this.builder.show();
         } else if (mDetailMode.equals("detail")) {
             // 상세보기 모드 | 뒤로가기 버튼을 누르면 경고 창이 뜨지 않고 바로 종료.
+
             finish();
         } else {
             // 작성하기 모드 | 뒤로가기 버튼을 누르면 경고 창이 뜸.
@@ -250,6 +261,7 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
             this.builder.setPositiveButton("나가기", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
+
                     finish();
                 }
             });

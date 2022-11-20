@@ -1,72 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="#eeeeee"
-    android:orientation="vertical"
     android:layout_width="300dp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/r16_ffffff"
+    android:orientation="vertical">
 
     <!-- 타이틀바 -->
-    <LinearLayout
-        android:orientation="horizontal"
+    <TextView
+        android:id="@+id/tv_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:text="모드 선택"
-            android:textSize="20sp"
-            android:textColor="#fff"
-            android:gravity="center"
-            android:background="#ff7a00"
-            android:layout_width="match_parent"
-            android:layout_height="53dp" />
-    </LinearLayout>
-    <!-- //end 타이틀바 -->
-
-    <!-- Notice -->
-    <LinearLayout
-        android:padding="24dp"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="라이트 모드"
-            android:textSize="20dp"
-            android:id="@+id/r_btn_light"
-            android:textColor="@color/black"/>
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="다크 모드"
-            android:textSize="20dp"
-            android:textColor="@color/black"
-            android:id="@+id/r_btn_dark"/>
-    </LinearLayout>
-    <!-- Notice -->
+        android:layout_height="53dp"
+        android:background="#12121212"
+        android:fontFamily="@font/humanbumsuk"
+        android:gravity="center"
+        android:text="모드를 선택해주세요"
+        android:textColor="@color/blackdialog"
+        android:textSize="20sp" />
 
     <View
-        android:background="#66bdbdbd"
         android:layout_width="match_parent"
-        android:layout_height="1dp" />
+        android:layout_height="1dp"
+        android:background="@color/black" />
 
-    <!-- 닫기 버튼 -->
-    <LinearLayout
-        android:orientation="horizontal"
+    <RadioButton
+        android:id="@+id/r_btn_light"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/humanbumsuk"
+        android:text="라이트 모드"
+        android:textColor="@color/blackdialog"
+        android:textSize="20dp" />
+
+    <RadioButton
+        android:id="@+id/r_btn_dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/humanbumsuk"
+        android:text="다크 모드"
+        android:textColor="@color/blackdialog"
+        android:textSize="20dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black" />
+
+    <Button
+        android:id="@+id/close_btn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#12121212"
+        android:fontFamily="@font/humanbumsuk"
         android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:onClick="mOnClose"
+        android:padding="16dp"
+        android:text="확인"
+        android:textColor="@color/blackdialog"
+        android:textSize="24dp" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#00000000"
-            android:gravity="center"
-            android:onClick="mOnClose"
-            android:padding="16dp"
-            android:text="확인"
-            android:textColor="#ff7a00"
-            android:textSize="24dp"
-            android:id="@+id/close_btn"/>
-    </LinearLayout>
-    <!--// 닫기 버튼 -->
 </LinearLayout>

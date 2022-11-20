@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundwhite"
+    tools:context=".MainActivity">
+    <!-- FrameLayout은 z축이라는 개념을 만들어서 뷰를 겹칠 수 있게 함-->
+
+
+    <!-- 리니어 레이아웃 : orientation 방향으로 쌓아 나갑니다.
+         orientation의 vertical은 수직, horizontal은 수평-->
+    <!-- androidx.appcompat.widget.LinearLayoutCompat 은 아이폰의 이모지 깨지거나 삼성의 최신 이모티콘을 위함-->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- HEADER -->
+        <!-- match_parent는 자신의 부모(레이아웃)에 폭이나 높이를 맞추는 것
+             wrap_content는 폭과 높이가 글자가 꼭 들어갈만큼 감싸기-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:background="@drawable/shape_input_field"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <!-- 서버와 클라이언트 안전한 연결을 위한 Shapeable -->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_settings"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/settings"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:tint="@color/black" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:id="@+id/ivLogo"
+                android:layout_marginLeft="40dp"
+                app:layout_constraintStart_toEndOf="@+id/iv_settings"
+                app:layout_constraintTop_toTopOf="@+id/iv_settings"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_settings"
+                android:src="@drawable/img_logo_diary" />
+
+            <!-- 서버와 클라이언트 안전한 연결을 위한 AppCompat -->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="간단 일기장"
+                android:fontFamily="@font/humanbumsuk"
+                android:id="@+id/tvLogo"
+                app:layout_constraintStart_toEndOf="@+id/ivLogo"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_question"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="end"
+                android:layout_marginRight="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/iv_menu"
+                app:layout_constraintTop_toTopOf="@+id/iv_menu"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_menu"
+                android:src="@drawable/question"
+                android:tint="@color/black" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_menu"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/ic_menu"
+                android:tint="@color/black" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_diary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/shape_input_field"
+            android:fadingEdge="vertical"
+            android:fadingEdgeLength="50dp"
+            android:overScrollMode="never"
+            android:requiresFadingEdge="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/list_item_diary" />
+
+        <!-- LIST -->
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!-- WRITE_BUTTON -->
+    <!-- Fl를 치면 자동으로 띄울 수 있는 버튼이 생성되는 코드가 나온다. -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_write"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="#448AFF"
+        android:src="@drawable/img_pencil"
+        app:tint="@color/white1" />
+
+</FrameLayout>

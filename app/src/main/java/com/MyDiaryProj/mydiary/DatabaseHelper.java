@@ -15,7 +15,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {  // SQLite = 안드로이
     private static final String DB_NAME = "MyDiary.db";
     private static final int DB_VERSION = 1;
     // 생성자 (constructor)
-
     public DatabaseHelper(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
@@ -32,6 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {  // SQLite = 안드로이
                 "userDate TEXT NOT NULL, " +
                 "writeDate TEXT NOT NULL)");
     }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {  onCreate(db); }
 
