@@ -27,7 +27,7 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     RecyclerView mRvDiary;              // 리사이클러 뷰 (리스트 뷰)
     DiaryListAdapter mAdapter;          // 리사이클러 뷰와 연동할 어댑터
@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     TextView tv_Change;
     TextView tv_help;
     TextView tv_developer;
+    TextView tvFontChange2;
+    TextView tvFontChange1;
     private AlertDialog.Builder builder;
 
     // var는 전역변수 사용 가능 val은 한 곳에서만 사용 가능 (메소드 안에서만)
@@ -65,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         tvHome = findViewById(R.id.tvHome);
         tv_help = (TextView) findViewById(R.id.tv_help);
         tv_developer = (TextView) findViewById(R.id.tv_developer);
+        tvFontChange1 = (TextView) findViewById(R.id.tvFontChange1);
+        tvFontChange2 = (TextView) findViewById(R.id.tvFontChange2);
 
         mRvDiary.setAdapter(mAdapter);
 
@@ -162,15 +166,9 @@ public class MainActivity extends AppCompatActivity {
 //        API 26이상
 //        Typeface typeface1 = getResources().getFont(R.font.nanumsquareroundr);
 //        tv_title.setTypeface(typeface1);
-//        tvLogo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //API 26이하
-//                AssetManager am = getResources().getAssets();
-//                Typeface typeface = Typeface.createFromAsset(am, "nanumsquareroundr.ttf");
-//                tvLogo.setTypeface(typeface);
-//            }
-//        });
+
+
+
 
 //        themeColor = ThemeUtil.modLoad(getApplicationContext());
 //        ThemeUtil.applyTheme(themeColor);
@@ -203,6 +201,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        tvFontChange2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 나늠스퀘어라운드체
+                setFont(1);
+            }
+        });
+        tvFontChange1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 휴먼범석체
+                setFont(0);
+            }
+        });
+//        setFont(this.getFont);
         // 액티비티가 재시작이 될 때 실행, onCreate와도 같이 실행
         // get load list
         setLoadRecentList();
@@ -211,6 +224,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+//        setFont(font);
         setLoadRecentList();
     }
 

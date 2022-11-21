@@ -150,8 +150,8 @@
                             android:layout_width="3dp"
                             android:layout_height="3dp"
                             android:layout_marginStart="20dp"
-                            android:layout_marginTop="21dp"
-                            android:layout_marginBottom="21dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginBottom="60dp"
                             android:background="@color/black"
                             android:text=""
                             app:layout_constraintStart_toStartOf="parent"
@@ -171,56 +171,56 @@
                             app:layout_constraintStart_toEndOf="@+id/viewA"
                             app:layout_constraintTop_toTopOf="@+id/viewA" />
 
-<!--                        <TextView-->
-<!--                            android:id="@+id/viewB"-->
-<!--                            android:layout_width="3dp"-->
-<!--                            android:layout_height="3dp"-->
-<!--                            android:layout_marginTop="10dp"-->
-<!--                            android:layout_marginBottom="30dp"-->
-<!--                            android:background="@color/black"-->
-<!--                            android:textColor="@color/black"-->
-<!--                            android:text=""-->
-<!--                            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                            app:layout_constraintStart_toStartOf="@+id/viewA"-->
-<!--                            app:layout_constraintTop_toBottomOf="@+id/tvChange" />-->
+                        <TextView
+                            android:id="@+id/viewC"
+                            android:layout_width="3dp"
+                            android:layout_height="3dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="30dp"
+                            android:background="@color/black"
+                            android:textColor="@color/black"
+                            android:text=""
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/viewA"
+                            app:layout_constraintTop_toBottomOf="@+id/tvChange" />
 
-<!--                        <TextView-->
-<!--                            android:id="@+id/tvFontChange1"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginStart="4dp"-->
-<!--                            android:fontFamily="@font/humanbumsuk"-->
-<!--                            android:text="폰트1"-->
-<!--                            android:textColor="@color/black"-->
-<!--                            android:textSize="20dp"-->
-<!--                            app:layout_constraintBottom_toBottomOf="@+id/viewB"-->
-<!--                            app:layout_constraintStart_toEndOf="@+id/viewB"-->
-<!--                            app:layout_constraintTop_toTopOf="@+id/viewB" />-->
+                        <TextView
+                            android:id="@+id/tvFontChange1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:text="휴먼범석체"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/humanbumsuk"
+                            android:textSize="20dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/viewC"
+                            app:layout_constraintStart_toEndOf="@+id/viewC"
+                            app:layout_constraintTop_toTopOf="@+id/viewC" />
 
-<!--                        <TextView-->
-<!--                            android:id="@+id/viewC"-->
-<!--                            android:layout_width="3dp"-->
-<!--                            android:layout_height="3dp"-->
-<!--                            android:layout_marginTop="10dp"-->
-<!--                            android:background="@color/black"-->
-<!--                            android:textColor="@color/black"-->
-<!--                            android:text=""-->
-<!--                            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                            app:layout_constraintStart_toStartOf="@+id/viewB"-->
-<!--                            app:layout_constraintTop_toBottomOf="@+id/tvFontChange1" />-->
+                        <TextView
+                            android:id="@+id/viewD"
+                            android:layout_width="3dp"
+                            android:layout_height="3dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/black"
+                            android:textColor="@color/black"
+                            android:text=""
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/viewC"
+                            app:layout_constraintTop_toBottomOf="@+id/tvFontChange1" />
 
-<!--                        <TextView-->
-<!--                            android:id="@+id/tvFontChange2"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="폰트2"-->
-<!--                            android:textSize="20dp"-->
-<!--                            android:fontFamily="@font/humanbumsuk"-->
-<!--                            android:textColor="@color/black"-->
-<!--                            android:layout_marginStart="4dp"-->
-<!--                            app:layout_constraintBottom_toBottomOf="@+id/viewC"-->
-<!--                            app:layout_constraintStart_toEndOf="@+id/viewC"-->
-<!--                            app:layout_constraintTop_toTopOf="@+id/viewC" />-->
+                        <TextView
+                            android:id="@+id/tvFontChange2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="나눔스퀘어체"
+                            android:textSize="20dp"
+                            android:fontFamily="@font/nanumsquareroundr"
+                            android:textColor="@color/black"
+                            android:layout_marginStart="4dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/viewD"
+                            app:layout_constraintStart_toEndOf="@+id/viewD"
+                            app:layout_constraintTop_toTopOf="@+id/viewD" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -23,7 +23,7 @@ import java.util.Date;
 import java.util.Locale;
 
 /** 상세보기 화면 or 작성하기 화면이다. **/
-public class DiaryDetailActivity extends AppCompatActivity implements View.OnClickListener {
+public class DiaryDetailActivity extends BaseActivity implements View.OnClickListener {
 
     private TextView mTvDate;               // 일시 설정 텍스트
     private EditText mEtTitle, mEtContent;  // 일기 제목, 일기 내용란
