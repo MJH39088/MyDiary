@@ -3,10 +3,14 @@ package com.MyDiaryProj.mydiary;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -101,6 +105,28 @@ public class DiaryDetailActivity extends BaseActivity implements View.OnClickLis
                 // 작성완료 버튼을 invisible (투명) 처리
                 iv_check.setVisibility(View.INVISIBLE);
             }
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences fontsp = getSharedPreferences("fontmode", Activity.MODE_PRIVATE);
+        int fontint = fontsp.getInt("FM", 1);
+        switch (fontint) {
+            case 0:
+                // 휴먼범석체
+                setFont(0);
+                break;
+            case 1:
+                // 나눔스퀘어체
+                setFont(1);
+                break;
+            case 2:
+                // 다이어리체
+                setFont(2);
+            default:
+                Log.i("폰트 익셉션태그", "폰트 익셉션내용");
         }
     }
 
@@ -270,4 +296,20 @@ public class DiaryDetailActivity extends BaseActivity implements View.OnClickLis
             this.builder.show();
         }
     }
+
+//    public void SelectFont(int FontResult) {
+//        Intent DetailIntent = getIntent();
+//        if (DetailIntent.getExtras() != null) {
+//            DetailFontId = DetailIntent.getStringExtra("font");
+//            if (DetailFontId.equals("휴먼범석")) {
+//                FontResult = 0;
+//                setFont(FontResult);
+//            } else if (DetailFontId.equals("나눔스퀘어")) {
+//                FontResult = 1;
+//                setFont(FontResult);
+//            }
+//        }
+//
+//
+//    }
 }

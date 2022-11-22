@@ -7,13 +7,16 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.graphics.fonts.Font;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +46,7 @@ public class MainActivity extends BaseActivity {
     TextView tv_developer;
     TextView tvFontChange2;
     TextView tvFontChange1;
+    TextView tvFontChange3;
     private AlertDialog.Builder builder;
 
     // var는 전역변수 사용 가능 val은 한 곳에서만 사용 가능 (메소드 안에서만)
@@ -69,6 +73,7 @@ public class MainActivity extends BaseActivity {
         tv_developer = (TextView) findViewById(R.id.tv_developer);
         tvFontChange1 = (TextView) findViewById(R.id.tvFontChange1);
         tvFontChange2 = (TextView) findViewById(R.id.tvFontChange2);
+        tvFontChange3 = (TextView) findViewById(R.id.tvFontChange3);
 
         mRvDiary.setAdapter(mAdapter);
 
@@ -206,6 +211,7 @@ public class MainActivity extends BaseActivity {
             public void onClick(View view) {
                 // 나늠스퀘어라운드체
                 setFont(1);
+                setSpInt(1);
             }
         });
         tvFontChange1.setOnClickListener(new View.OnClickListener() {
@@ -213,11 +219,35 @@ public class MainActivity extends BaseActivity {
             public void onClick(View view) {
                 // 휴먼범석체
                 setFont(0);
+                setSpInt(0);
             }
         });
-//        setFont(this.getFont);
+        tvFontChange3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setFont(2);
+                setSpInt(2);
+            }
+        });
         // 액티비티가 재시작이 될 때 실행, onCreate와도 같이 실행
         // get load list
+        SharedPreferences fontsp = getSharedPreferences("fontmode", Activity.MODE_PRIVATE);
+        int fontint = fontsp.getInt("FM", 1);
+        switch (fontint) {
+            case 0:
+                // 휴먼범석체
+                setFont(0);
+                break;
+            case 1:
+                // 나눔스퀘어체
+                setFont(1);
+                break;
+            case 2:
+                // 다이어리체
+                setFont(2);
+            default:
+                Log.i("폰트 익셉션태그", "폰트 익셉션내용");
+        }
         setLoadRecentList();
     }
 

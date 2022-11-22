@@ -2,10 +2,12 @@ package com.MyDiaryProj.mydiary;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -35,6 +37,7 @@ public class ModDialog extends Activity {
             @Override
             public void onClick(View view) {
                 themeColor = ThemeUtil.LIGHT_MODE;
+
                 ThemeUtil.applyTheme(themeColor);
                 ThemeUtil.modSave(getApplicationContext(), themeColor);
 
@@ -70,4 +73,25 @@ public class ModDialog extends Activity {
             }
         });
     }
+
+//    public void fff() {
+//        SharedPreferences fontsp = getSharedPreferences("fontmode", Activity.MODE_PRIVATE);
+//        int fontint = fontsp.getInt("FM", 1);
+//        switch (fontint) {
+//            case 0:
+//                // 휴먼범석체
+//                setFont(0);
+//                break;
+//            case 1:
+//                // 나눔스퀘어체
+//                setFont(1);
+//                break;
+//            case 2:
+//                // 다이어리체
+//                setFont(2);
+//            default:
+//                Log.i("폰트 익셉션태그", "폰트 익셉션내용");
+//    }
+//
+//}
 }

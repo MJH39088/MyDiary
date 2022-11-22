@@ -1,5 +1,6 @@
 package com.MyDiaryProj.mydiary;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -7,11 +8,10 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
-public class ThemeUtil extends AppCompatActivity {
+public class ThemeUtil extends BaseActivity {
     public static final String LIGHT_MODE = "light";
     public static final String DARK_MODE = "dark";
     public static final String DEFAULT_MODE = "default";
-
     private static final String TAG = "ThemeUtil";
 
     public static void applyTheme(String themeColor) {

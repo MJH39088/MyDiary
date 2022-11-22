@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="53dp"
         android:background="#12121212"
-        android:fontFamily="@font/humanbumsuk"
+        android:textStyle=""
         android:gravity="center"
         android:text="모드를 선택해주세요"
         android:textColor="@color/blackdialog"
@@ -27,7 +27,6 @@
         android:id="@+id/r_btn_light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/humanbumsuk"
         android:text="라이트 모드"
         android:textColor="@color/blackdialog"
         android:textSize="20dp" />
@@ -36,7 +35,6 @@
         android:id="@+id/r_btn_dark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/humanbumsuk"
         android:text="다크 모드"
         android:textColor="@color/blackdialog"
         android:textSize="20dp" />
@@ -51,7 +49,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#12121212"
-        android:fontFamily="@font/humanbumsuk"
         android:gravity="center"
         android:onClick="mOnClose"
         android:padding="16dp"

@@ -33,7 +33,7 @@
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:fontFamily="@font/humanbumsuk"
+
             android:layout_gravity="center_vertical"/>
 
         <!-- 공간만 차지하는 역할 weight의 가중치를 1로 둬서 check ImageView를 오른쪽으로 밀어버렸다. -->
@@ -66,8 +66,7 @@
             android:id="@+id/tv_DetailTitle"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/black"
-            android:fontFamily="@font/humanbumsuk"/>
+            android:textColor="@color/black" />
 
         <!-- 사용자에게 입력을 받는 input 필드 싱글 라인(한 줄만 입력 가능) 멀티 라인(엔터 여러줄 입력 가능) -->\
         <!-- maxLines : 줄 제한 maxLength : 글자 수 제한 padding은 내부에서 넓히는 구조 -->
@@ -82,7 +81,6 @@
             android:maxLines="1"
             android:maxLength="20"
             android:padding="8dp"
-            android:fontFamily="@font/humanbumsuk"
             android:background="@drawable/shape_input_field"/>
 
     </LinearLayout>
@@ -101,8 +99,7 @@
             android:id="@+id/tv_DetailDate"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/black"
-            android:fontFamily="@font/humanbumsuk"/>
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/tv_date"
@@ -112,8 +109,7 @@
             android:layout_marginTop="4dp"
             android:textStyle="bold"
             android:textSize="14sp"
-            android:text="2022/05/27 금요일"
-            android:fontFamily="@font/humanbumsuk"/>
+            android:text="2022/05/27 금요일" />
 
     </LinearLayout>
 
@@ -131,8 +127,7 @@
             android:id="@+id/tv_DetailWeather"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/black"
-            android:fontFamily="@font/humanbumsuk" />
+            android:textColor="@color/black" />
 
         <!-- RADIO BUTTON GROUP -->
         <RadioGroup
@@ -204,8 +199,7 @@
             android:id="@+id/tv_DetailContent"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/black"
-            android:fontFamily="@font/humanbumsuk" />
+            android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/et_content"
@@ -224,7 +218,6 @@
             android:scrollHorizontally="false"
             android:overScrollMode="always"
             android:padding="8dp"
-            android:fontFamily="@font/humanbumsuk"
             android:background="@drawable/shape_input_field"/>
 
     </LinearLayout>

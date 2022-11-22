@@ -58,7 +58,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:text="간단 일기장"
-                android:fontFamily="@font/humanbumsuk"
                 android:id="@+id/tvLogo"
                 app:layout_constraintStart_toEndOf="@+id/ivLogo"
                 app:layout_constraintTop_toTopOf="parent"
