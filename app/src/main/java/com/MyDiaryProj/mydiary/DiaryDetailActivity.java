@@ -36,9 +36,7 @@ public class DiaryDetailActivity extends BaseActivity implements View.OnClickLis
     private String mSelectedUserDate = "";  // 사용자가 실제 다이어리에 표시한 일자
     private String mBeforeDate = "";        // intent로 받아낸 게시글 기존 작성 일자
     private String mDetailMode = "";        // intent로 받아낸 게시글 모드
-    private AlertDialog.Builder builder;
     private DatabaseHelper mDatabaseHelper; // database 유틸 객체
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +47,6 @@ public class DiaryDetailActivity extends BaseActivity implements View.OnClickLis
 
         // Database 객체 생성
         mDatabaseHelper = new DatabaseHelper(this);
-        builder = new AlertDialog.Builder(this);
 
         mTvDate = findViewById(R.id.tv_date);                   // 일시 설정 텍스트
         mEtTitle = findViewById(R.id.et_title);                 // 제목 입력 필드
@@ -111,23 +108,7 @@ public class DiaryDetailActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void onResume() {
         super.onResume();
-        SharedPreferences fontsp = getSharedPreferences("fontmode", Activity.MODE_PRIVATE);
-        int fontint = fontsp.getInt("FM", 1);
-        switch (fontint) {
-            case 0:
-                // 휴먼범석체
-                setFont(0);
-                break;
-            case 1:
-                // 나눔스퀘어체
-                setFont(1);
-                break;
-            case 2:
-                // 다이어리체
-                setFont(2);
-            default:
-                Log.i("폰트 익셉션태그", "폰트 익셉션내용");
-        }
+        this.setFontSp();
     }
 
     @Override
@@ -137,47 +118,16 @@ public class DiaryDetailActivity extends BaseActivity implements View.OnClickLis
             case R.id.iv_back:
                 // 뒤로가기 버튼 | 생명 주기가 파괴되면 자동으로 전의 액티비티로 감.
                 if (mDetailMode.equals("modify")) {
-                    this.builder.setMessage("수정한 내용이 저장되지 않고 나가져요.");
-
-                    this.builder.setNegativeButton("계속 수정하기", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            return;
-                        }
-                    });
-                    this.builder.setPositiveButton("나가기", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            finish();
-                        }
-                    });
-
-                    this.builder.setTitle("경고");
-                    this.builder.show();
+                    this.setDialogPositiveMessage("수정한 내용이 저장되지 않고 나가져요.", "계속 수정하기", "나가기", "경고");
                 } else if (mDetailMode.equals("detail")) {
                     // 상세보기 모드 | 뒤로가기 버튼을 누르면 경고 창이 뜨지 않고 바로 종료.
                     finish();
                 } else {
                     // 작성하기 모드 | 뒤로가기 버튼을 누르면 경고 창이 뜸.
-                    this.builder.setMessage("작성한 내용이 저장되지 않고 나가져요.");
-
-                    this.builder.setNegativeButton("계속 작성하기", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            return;
-                        }
-                    });
-                    this.builder.setPositiveButton("나가기", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            finish();
-                        }
-                    });
-
-                    this.builder.setTitle("경고");
-                    this.builder.show();
+                    this.setDialogPositiveMessage("작성한 내용이 저장되지 않고 나가져요.", "계속 작성하기", "나가기", "경고");
                 }
                 break;
+
             case R.id.iv_check:
                 // 작성 완료 버튼 | indexOfChild는 라디오 그룹의 라디오 버튼을 찾기 위함
                 // mRgWeather.getCheckedRadioButtonId()은 현재 체크된 Id값을 체크해서 mSelectedWeatherType으로 넘겨줌
@@ -218,7 +168,6 @@ public class DiaryDetailActivity extends BaseActivity implements View.OnClickLis
                     mDatabaseHelper.setInsertDiaryList(title, content, mSelectedWeatherType, userDate, writeDate);
                     Toast.makeText(this, "다이어리 등록이 완료됐어요.", Toast.LENGTH_SHORT).show();
                 }
-
                 Intent intent = new Intent(DiaryDetailActivity.this, MainActivity.class);
                 startActivity(intent);
 
@@ -237,7 +186,6 @@ public class DiaryDetailActivity extends BaseActivity implements View.OnClickLis
                         innerCal.set(Calendar.YEAR, year);
                         innerCal.set(Calendar.MONTH, month);
                         innerCal.set(Calendar.DATE, day);
-
                         mSelectedUserDate = new SimpleDateFormat("yyyy/MM/dd E요일", Locale.KOREAN).format(innerCal.getTime());
                         mTvDate.setText(mSelectedUserDate);
                     }
@@ -249,67 +197,15 @@ public class DiaryDetailActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void onBackPressed() {
-
         if (mDetailMode.equals("modify")) {
             // 수정 모드 | 뒤로가기 버튼을 누르면 경고 창이 뜸.
-            this.builder.setMessage("수정한 내용이 저장되지 않고 나가져요.");
-
-            this.builder.setNegativeButton("계속 수정하기", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    return;
-                }
-            });
-            this.builder.setPositiveButton("나가기", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-
-                    finish();
-                }
-            });
-
-            this.builder.setTitle("경고");
-            this.builder.show();
+            this.setDialogPositiveMessage("수정한 내용이 저장되지 않고 나가져요.", "계속 수정하기", "나가기", "경고");
         } else if (mDetailMode.equals("detail")) {
             // 상세보기 모드 | 뒤로가기 버튼을 누르면 경고 창이 뜨지 않고 바로 종료.
-
             finish();
         } else {
             // 작성하기 모드 | 뒤로가기 버튼을 누르면 경고 창이 뜸.
-            this.builder.setMessage("작성한 내용이 저장되지 않고 나가져요.");
-
-            this.builder.setNegativeButton("계속 작성하기", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    return;
-                }
-            });
-            this.builder.setPositiveButton("나가기", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-
-                    finish();
-                }
-            });
-
-            this.builder.setTitle("경고");
-            this.builder.show();
+            this.setDialogPositiveMessage("작성한 내용이 저장되지 않고 나가져요.", "계속 작성하기", "나가기", "경고");
         }
     }
-
-//    public void SelectFont(int FontResult) {
-//        Intent DetailIntent = getIntent();
-//        if (DetailIntent.getExtras() != null) {
-//            DetailFontId = DetailIntent.getStringExtra("font");
-//            if (DetailFontId.equals("휴먼범석")) {
-//                FontResult = 0;
-//                setFont(FontResult);
-//            } else if (DetailFontId.equals("나눔스퀘어")) {
-//                FontResult = 1;
-//                setFont(FontResult);
-//            }
-//        }
-//
-//
-//    }
 }

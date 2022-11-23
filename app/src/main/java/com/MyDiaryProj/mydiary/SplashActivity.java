@@ -2,17 +2,21 @@ package com.MyDiaryProj.mydiary;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash); // R은 res파일. 즉 xml과 연동하는 코드
         // onCreate() : Activity (화면) 이 시작될 때 가장 먼저 실행되는 곳 ! [안드로이드 액티비티 생명주기]
+        setFontSp();
 
         // 딜레이를 발생시켜서 (1~2초 가량) 그 이후에 MainActivity 로 이동 해야 함.
         new Handler(getMainLooper()).postDelayed(new Runnable() {

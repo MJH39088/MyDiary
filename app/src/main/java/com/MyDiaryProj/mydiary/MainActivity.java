@@ -36,18 +36,9 @@ public class MainActivity extends BaseActivity {
     DiaryListAdapter mAdapter;          // 리사이클러 뷰와 연동할 어댑터
     ArrayList<DiaryModel> mLstDiary;    // 리스트에 표현할 다이어리 데이터들 (배열)
     DatabaseHelper mDatabaseHelper;     // 데이터베이스 헬퍼 클래스 유틸 객체
-    ImageView iv_question;
-    ImageView iv_settings;
+    ImageView iv_question, iv_settings, iv_menu;
     DrawerLayout drawerLayout;
-    ImageView iv_menu;
-    TextView tvHome;
-    TextView tv_Change;
-    TextView tv_help;
-    TextView tv_developer;
-    TextView tvFontChange2;
-    TextView tvFontChange1;
-    TextView tvFontChange3;
-    private AlertDialog.Builder builder;
+    TextView tvHome, tv_Change, tv_help, tv_developer, tvFontChange1, tvFontChange2, tvFontChange3;
 
     // var는 전역변수 사용 가능 val은 한 곳에서만 사용 가능 (메소드 안에서만)
     @Override
@@ -59,7 +50,6 @@ public class MainActivity extends BaseActivity {
         mDatabaseHelper = new DatabaseHelper(this);
         mLstDiary = new ArrayList<>();
         mAdapter = new DiaryListAdapter(); // 리사이클러 뷰 어댑터 인스턴스 생성
-        builder = new AlertDialog.Builder(this);
 
         FloatingActionButton floatingActionButton = findViewById(R.id.btn_write);
         iv_question = findViewById(R.id.iv_question);
@@ -88,18 +78,7 @@ public class MainActivity extends BaseActivity {
         iv_question.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                builder.setMessage("작성한 일기를 길게 누르면 수정과 삭제가 가능해요.");
-
-                builder.setNegativeButton("확인", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        return;
-                    }
-                });
-
-                builder.setTitle("도움말");
-                builder.show();
-
+                setDialogNagativeMessage("작성한 일기를 길게 누르면 수정과 삭제가 가능해요.", "확인", "도움말");
             }
         });
 
@@ -122,7 +101,7 @@ public class MainActivity extends BaseActivity {
         tvHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                // Drawer의 일기 작성하기
                 Intent intent = new Intent(MainActivity.this, DiaryDetailActivity.class);
                 startActivity(intent);
             }
@@ -131,6 +110,7 @@ public class MainActivity extends BaseActivity {
         tv_Change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // 라이트모드, 다크모드 변경 ModDialog 호출
                 Intent intent = new Intent(MainActivity.this, ModDialog.class);
                 startActivity(intent);
             }
@@ -139,32 +119,15 @@ public class MainActivity extends BaseActivity {
         tv_help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                builder.setMessage("작성한 일기를 길게 누르면 수정과 삭제가 가능해요.");
-
-                builder.setNegativeButton("확인", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        return;
-                    }
-                });
-
-                builder.setTitle("도움말");
-                builder.show();
+                // 메인액티비티 로고 옆 도움말
+                setDialogNagativeMessage("작성한 일기를 길게 누르면 수정과 삭제가 가능해요.", "확인", "도움말");
             }
         });
 
         tv_developer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                builder.setMessage("email : gjalswo3908@gmail.com");
-
-                builder.setNegativeButton("확인", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) { return; }
-                });
-
-                builder.setTitle("피드백을 주시면 힘이 나요.");
-                builder.show();
+                setDialogNagativeMessage("email : gjalswo3908@gmail.com", "확인", "피드백을 주시면 힘이 나요.");
             }
         });
 
@@ -172,9 +135,7 @@ public class MainActivity extends BaseActivity {
 //        Typeface typeface1 = getResources().getFont(R.font.nanumsquareroundr);
 //        tv_title.setTypeface(typeface1);
 
-
-
-
+//        전에 설정했던 모드 가져오기, 처음 앱 킬 때 두 번 호출되는 버그 있음.
 //        themeColor = ThemeUtil.modLoad(getApplicationContext());
 //        ThemeUtil.applyTheme(themeColor);
 
@@ -203,6 +164,7 @@ public class MainActivity extends BaseActivity {
      * 날짜 갱신
      */
     // Ctrl + o
+    // 액티비티가 재시작이 될 때 실행, onCreate와도 같이 실행
     @Override
     protected void onResume() {
         super.onResume();
@@ -229,32 +191,13 @@ public class MainActivity extends BaseActivity {
                 setSpInt(2);
             }
         });
-        // 액티비티가 재시작이 될 때 실행, onCreate와도 같이 실행
-        // get load list
-        SharedPreferences fontsp = getSharedPreferences("fontmode", Activity.MODE_PRIVATE);
-        int fontint = fontsp.getInt("FM", 1);
-        switch (fontint) {
-            case 0:
-                // 휴먼범석체
-                setFont(0);
-                break;
-            case 1:
-                // 나눔스퀘어체
-                setFont(1);
-                break;
-            case 2:
-                // 다이어리체
-                setFont(2);
-            default:
-                Log.i("폰트 익셉션태그", "폰트 익셉션내용");
-        }
+        this.setFontSp();
         setLoadRecentList();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-//        setFont(font);
         setLoadRecentList();
     }
 
@@ -275,25 +218,23 @@ public class MainActivity extends BaseActivity {
             drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
         } else {
-            this.builder.setMessage("앱을 종료하시겠어요?");
-
-            this.builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-
-                    finish();
-                }
-            });
-
-            this.builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    return;
-                }
-            });
-
-            this.builder.setTitle("확인");
-            this.builder.show();
+            this.setDialogPositiveMessage("앱을 종료하시겠어요?", "아니오", "예", "확인");
+//            this.builder.setMessage("앱을 종료하시겠어요?");
+//            this.builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialogInterface, int i) {
+//
+//                    finish();
+//                }
+//            });
+//            this.builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialogInterface, int i) {
+//                    return;
+//                }
+//            });
+//            this.builder.setTitle("확인");
+//            this.builder.show();
         }
     }
 
