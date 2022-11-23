@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/iv_selectfontback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_back"
+        app:tint="@color/black"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="폰트 설정"
+        android:textSize="24dp"
+        android:textColor="@color/black"
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toEndOf="@id/iv_selectfontback"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_selectfontback"/>
+
+    <LinearLayout
+        android:id="@+id/viewLL"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:layout_constraintTop_toBottomOf="@id/view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/shape_input_field2">
+
+        <TextView
+            android:id="@+id/tv_examplefont26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20dp 예시용 글이에요."
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view" />
+
+        <TextView
+            android:id="@+id/tv_examplefont20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="26dp 예시용 글이에요."
+            android:textSize="26dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_examplefont26" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/viewLL"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="150dp">
+
+        <RadioButton
+            android:id="@+id/rb_humanbumsuk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="휴먼범석체"
+            android:textSize="20dp"
+            android:fontFamily="@font/humanbumsuk"
+            android:textColor="@color/black" />
+
+        <RadioButton
+            android:id="@+id/rb_nanumsquare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="나눔스퀘어체"
+            android:textSize="20dp"
+            android:fontFamily="@font/nanumsquareroundr"
+            android:textColor="@color/black" />
+
+        <RadioButton
+            android:id="@+id/rb_efdiary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="다이어리체"
+            android:textSize="20dp"
+            android:fontFamily="@font/ef_diary"
+            android:textColor="@color/black" />
+
+
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

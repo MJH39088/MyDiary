@@ -1,5 +1,6 @@
 package com.MyDiaryProj.mydiary;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -18,6 +19,7 @@ import android.graphics.fonts.Font;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -38,7 +40,8 @@ public class MainActivity extends BaseActivity {
     DatabaseHelper mDatabaseHelper;     // 데이터베이스 헬퍼 클래스 유틸 객체
     ImageView iv_question, iv_settings, iv_menu;
     DrawerLayout drawerLayout;
-    TextView tvHome, tv_Change, tv_help, tv_developer, tvFontChange1, tvFontChange2, tvFontChange3;
+    TextView tvHome, tv_Change, tv_help, tv_developer, tvFontChangemode;
+    protected Typeface mTypeface = null;
 
     // var는 전역변수 사용 가능 val은 한 곳에서만 사용 가능 (메소드 안에서만)
     @Override
@@ -61,11 +64,40 @@ public class MainActivity extends BaseActivity {
         tvHome = findViewById(R.id.tvHome);
         tv_help = (TextView) findViewById(R.id.tv_help);
         tv_developer = (TextView) findViewById(R.id.tv_developer);
-        tvFontChange1 = (TextView) findViewById(R.id.tvFontChange1);
-        tvFontChange2 = (TextView) findViewById(R.id.tvFontChange2);
-        tvFontChange3 = (TextView) findViewById(R.id.tvFontChange3);
+        tvFontChangemode = (TextView) findViewById(R.id.tvFontChangemode);
 
         mRvDiary.setAdapter(mAdapter);
+        mRvDiary.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                setFontSp();
+            }
+        });
+        mRvDiary.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+
+            @Override
+            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+                View child = mRvDiary.findChildViewUnder(e.getX(), e.getY());
+                if (child != null) {
+                    setFontSp();
+                }
+                int position = mRvDiary.getChildAdapterPosition(child);
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
+
+
 
         iv_settings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,6 +163,14 @@ public class MainActivity extends BaseActivity {
             }
         });
 
+        tvFontChangemode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, FontSelect.class);
+                startActivity(intent);
+            }
+        });
+
 //        API 26이상
 //        Typeface typeface1 = getResources().getFont(R.font.nanumsquareroundr);
 //        tv_title.setTypeface(typeface1);
@@ -168,29 +208,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        tvFontChange2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // 나늠스퀘어라운드체
-                setFont(1);
-                setSpInt(1);
-            }
-        });
-        tvFontChange1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // 휴먼범석체
-                setFont(0);
-                setSpInt(0);
-            }
-        });
-        tvFontChange3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setFont(2);
-                setSpInt(2);
-            }
-        });
         this.setFontSp();
         setLoadRecentList();
     }
@@ -219,22 +236,6 @@ public class MainActivity extends BaseActivity {
 
         } else {
             this.setDialogPositiveMessage("앱을 종료하시겠어요?", "아니오", "예", "확인");
-//            this.builder.setMessage("앱을 종료하시겠어요?");
-//            this.builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialogInterface, int i) {
-//
-//                    finish();
-//                }
-//            });
-//            this.builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialogInterface, int i) {
-//                    return;
-//                }
-//            });
-//            this.builder.setTitle("확인");
-//            this.builder.show();
         }
     }
 
