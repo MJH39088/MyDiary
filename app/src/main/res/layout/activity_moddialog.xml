@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:text="라이트 모드"
         android:textColor="@color/blackdialog"
-        android:textSize="20dp" />
+        android:textSize="20sp" />
 
     <RadioButton
         android:id="@+id/r_btn_dark"
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:text="다크 모드"
         android:textColor="@color/blackdialog"
-        android:textSize="20dp" />
+        android:textSize="20sp" />
 
     <View
         android:layout_width="match_parent"
@@ -54,6 +54,6 @@
         android:padding="16dp"
         android:text="확인"
         android:textColor="@color/blackdialog"
-        android:textSize="24dp" />
+        android:textSize="24sp" />
 
 </LinearLayout>

@@ -1,11 +1,13 @@
 package com.MyDiaryProj.mydiary;
 
+import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -15,11 +17,14 @@ public class FontSelect extends BaseActivity{
     TextView tv_examplefont20, tv_examplefont26;
     RadioButton rb_humanbumsuk, rb_nanumsquare, rb_efdiary;
     protected Typeface mTypeface;
+    public static Context mContext;
+    public static int a;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selectfont);
+        mContext = this;
 
         iv_selectfontback = (ImageView) findViewById(R.id.iv_selectfontback);
         tv_examplefont20 = (TextView) findViewById(R.id.tv_examplefont20);
@@ -31,6 +36,15 @@ public class FontSelect extends BaseActivity{
         iv_selectfontback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (rb_humanbumsuk.isChecked()) {
+                    Toast.makeText(FontSelect.this, "휴먼범석체로 설정되었어요.", Toast.LENGTH_SHORT).show();
+                } else if (rb_nanumsquare.isChecked()) {
+                    Toast.makeText(FontSelect.this, "나눔스퀘어체로 설정되었어요.", Toast.LENGTH_SHORT).show();
+                } else if (rb_efdiary.isChecked()) {
+                    Toast.makeText(FontSelect.this, "다이어리체로 설정되었어요.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(FontSelect.this, "폰트 설정을 하지 않고 나왔어요.", Toast.LENGTH_SHORT).show();
+                }
                 finish();
             }
         });
@@ -42,6 +56,7 @@ public class FontSelect extends BaseActivity{
                 tv_examplefont20.setTypeface(mTypeface);
                 tv_examplefont26.setTypeface(mTypeface);
                 setSpInt(0);
+                a = 1;
 
                 if (rb_humanbumsuk.isEnabled()) {
                     rb_efdiary.setChecked(false);
@@ -57,6 +72,7 @@ public class FontSelect extends BaseActivity{
                 tv_examplefont20.setTypeface(mTypeface);
                 tv_examplefont26.setTypeface(mTypeface);
                 setSpInt(1);
+                a = 2;
 
                 if (rb_nanumsquare.isEnabled()) {
                     rb_humanbumsuk.setChecked(false);
@@ -72,6 +88,7 @@ public class FontSelect extends BaseActivity{
                 tv_examplefont20.setTypeface(mTypeface);
                 tv_examplefont26.setTypeface(mTypeface);
                 setSpInt(2);
+                a = 3;
 
                 if (rb_efdiary.isEnabled()) {
                     rb_humanbumsuk.setChecked(false);
@@ -83,6 +100,15 @@ public class FontSelect extends BaseActivity{
 
     @Override
     public void onBackPressed() {
+        if (rb_humanbumsuk.isChecked()) {
+            Toast.makeText(FontSelect.this, "휴먼범석체로 설정되었어요.", Toast.LENGTH_SHORT).show();
+        } else if (rb_nanumsquare.isChecked()) {
+            Toast.makeText(FontSelect.this, "나눔스퀘어체로 설정되었어요.", Toast.LENGTH_SHORT).show();
+        } else if (rb_efdiary.isChecked()) {
+            Toast.makeText(FontSelect.this, "다이어리체로 설정되었어요.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(FontSelect.this, "폰트 설정을 하지 않고 나왔어요.", Toast.LENGTH_SHORT).show();
+        }
         finish();
     }
 }

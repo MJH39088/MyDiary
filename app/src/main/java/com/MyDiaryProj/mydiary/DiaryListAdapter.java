@@ -1,10 +1,15 @@
 package com.MyDiaryProj.mydiary;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
+import android.graphics.fonts.Font;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 //Alt + Enter 사용하면 좋음
@@ -23,7 +29,6 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
     ArrayList<DiaryModel> mLstDiary;        // 다이어리 데이터들을 들고 있는 자료형 배열
     Context mContext;
     DatabaseHelper mDatabaseHelper;         // 데이터베이스 헬퍼 클래스 유틸 객체
-    //private AlertDialog.Builder builder;
 
     @NonNull
     @Override
@@ -94,6 +99,24 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
             tv_title = itemView.findViewById(R.id.tv_title);            // 다이어리 제목
             tv_user_date = itemView.findViewById(R.id.tv_user_date);    // 사용자 지정 날짜
             view = itemView.findViewById(R.id.view);
+            int a1 = ((FontSelect)FontSelect.mContext).a;
+            switch (a1) {
+                case 1:
+                    tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/humanbumsuk.ttf"));
+                    tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/humanbumsuk.ttf"));
+                    break;
+                case 2:
+                    tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/nanumsquareroundr.ttf"));
+                    tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/nanumsquareroundr.ttf"));
+                    break;
+                case 3:
+                    tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/EF_Diary.ttf"));
+                    tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/EF_Diary.ttf"));
+                    break;
+                default:
+                    Log.i("어댑터 폰트 태그", "현재 저장된 폰트가 없어요.");
+                    break;
+            }
 
             // 일반 클릭 (상세 보기)
             itemView.setOnClickListener(new View.OnClickListener() {

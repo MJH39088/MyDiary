@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
@@ -41,7 +42,7 @@ public class MainActivity extends BaseActivity {
     ImageView iv_question, iv_settings, iv_menu;
     DrawerLayout drawerLayout;
     TextView tvHome, tv_Change, tv_help, tv_developer, tvFontChangemode;
-    protected Typeface mTypeface = null;
+
 
     // var는 전역변수 사용 가능 val은 한 곳에서만 사용 가능 (메소드 안에서만)
     @Override
@@ -67,13 +68,22 @@ public class MainActivity extends BaseActivity {
         tvFontChangemode = (TextView) findViewById(R.id.tvFontChangemode);
 
         mRvDiary.setAdapter(mAdapter);
+
         mRvDiary.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+
+                LinearLayoutManager layoutManager = LinearLayoutManager.class.cast(mRvDiary.getLayoutManager());
+                int totalItemCount = layoutManager.getItemCount();
+                int lastVisible = layoutManager.findLastCompletelyVisibleItemPosition();
+                if (lastVisible >= totalItemCount - 1) {
+                    setFontSp();
+                }
                 setFontSp();
             }
         });
+
         mRvDiary.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
 
             @Override
@@ -97,13 +107,11 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-
-
         iv_settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ModDialog.class);
-                startActivity(intent);
+                IntentActivity(getApplicationContext(), ModDialog.class);
+                mAdapter.notifyDataSetChanged();
             }
         });
 
@@ -118,8 +126,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 // 작성하기 버튼을 누를 때 호출되는 곳
-                Intent intent = new Intent(MainActivity.this, DiaryDetailActivity.class);
-                startActivity(intent);
+                IntentActivity(MainActivity.this, DiaryDetailActivity.class);
             }
         });
 
@@ -134,8 +141,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 // Drawer의 일기 작성하기
-                Intent intent = new Intent(MainActivity.this, DiaryDetailActivity.class);
-                startActivity(intent);
+                IntentActivity(MainActivity.this, DiaryDetailActivity.class);
             }
         });
 
@@ -143,8 +149,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 // 라이트모드, 다크모드 변경 ModDialog 호출
-                Intent intent = new Intent(MainActivity.this, ModDialog.class);
-                startActivity(intent);
+                IntentActivity(MainActivity.this, ModDialog.class);
             }
         });
 
@@ -166,20 +171,15 @@ public class MainActivity extends BaseActivity {
         tvFontChangemode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, FontSelect.class);
-                startActivity(intent);
+                IntentActivity(MainActivity.this, FontSelect.class);
             }
         });
-
-//        API 26이상
-//        Typeface typeface1 = getResources().getFont(R.font.nanumsquareroundr);
-//        tv_title.setTypeface(typeface1);
 
 //        전에 설정했던 모드 가져오기, 처음 앱 킬 때 두 번 호출되는 버그 있음.
 //        themeColor = ThemeUtil.modLoad(getApplicationContext());
 //        ThemeUtil.applyTheme(themeColor);
 
-        // 다이어리 샘플 아이템 1개 생성
+        // 다이어리 샘플 아이템 생성
 //        DiaryModel item = new DiaryModel();
 //        item.setId(0);
 //        item.setTitle("나는 오늘도 피곤하다");
@@ -188,15 +188,7 @@ public class MainActivity extends BaseActivity {
 //        item.setWriteDate("2022/05/19 수");
 //        item.setWeatherType(0);
 //        mLstDiary.add(item);
-//
-//        DiaryModel item2 = new DiaryModel();
-//        item2.setId(0);
-//        item2.setTitle("나는 오늘도 피곤하다");
-//        item2.setContent("허민재 내용입니다.");
-//        item2.setUserDate("2022/05/20 목");
-//        item2.setWriteDate("2022/05/20 목");
-//        item2.setWeatherType(3);
-//        mLstDiary.add(item2);
+
 
     }
     /**
@@ -241,12 +233,10 @@ public class MainActivity extends BaseActivity {
 
     private void setLoadRecentList() {
         // 최근 데이터베이스 정보를 가지고 와서 리사이클러뷰에 갱신해준다.
-
         // 이전에 배열 리스트에 저장된 데이터가 있으면 비워버린다. 즉 초기화
         if (!mLstDiary.isEmpty()) {
             mLstDiary.clear();
         }
-
         mLstDiary = mDatabaseHelper.getDiaryListFromDB(); // 데이터베이스로부터 저장되어 있는 DB를 확인하여 가지고 옴.
         mAdapter.setListInit(mLstDiary);
     }

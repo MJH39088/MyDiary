@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="폰트 설정"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:textColor="@color/black"
         android:layout_marginEnd="50dp"
         android:layout_marginTop="20dp"
@@ -50,22 +50,22 @@
         android:background="@drawable/shape_input_field2">
 
         <TextView
-            android:id="@+id/tv_examplefont26"
+            android:id="@+id/tv_examplefont20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="20dp 예시용 글이에요."
-            android:textSize="20dp"
+            android:text="20sp 예시용 글이에요."
+            android:textSize="20sp"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view" />
 
         <TextView
-            android:id="@+id/tv_examplefont20"
+            android:id="@+id/tv_examplefont26"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="26dp 예시용 글이에요."
-            android:textSize="26dp"
+            android:text="26sp 예시용 글이에요."
+            android:textSize="26sp"
             android:textColor="@color/black"
             android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -91,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="휴먼범석체"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:fontFamily="@font/humanbumsuk"
             android:textColor="@color/black" />
 
@@ -100,7 +100,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="나눔스퀘어체"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:fontFamily="@font/nanumsquareroundr"
             android:textColor="@color/black" />
 
@@ -109,7 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="다이어리체"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:fontFamily="@font/ef_diary"
             android:textColor="@color/black" />
 

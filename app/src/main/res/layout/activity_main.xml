@@ -71,7 +71,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="간단 일기장"
-                            android:textSize="24dp"
+                            android:textSize="24sp"
                             android:id="@+id/tvHomeLogo"
                             android:textStyle="bold"
                             app:layout_constraintStart_toEndOf="@+id/iv_drawerlogo"
@@ -118,14 +118,14 @@
                         android:gravity="center"
                         android:text="일기 작성하기"
                         android:textColor="@color/black"
-                        android:textSize="24dp" />
+                        android:textSize="24sp" />
 
                     <!-- 마이페이지 -->
                     <TextView
                         android:id="@+id/tvSetting"
                         android:layout_width="wrap_content"
                         android:text="설정"
-                        android:textSize="24dp"
+                        android:textSize="24sp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="30dp"
@@ -159,7 +159,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="모드 변경하기"
-                            android:textSize="20dp"
+                            android:textSize="20sp"
                             android:textColor="@color/black"
                             android:layout_marginStart="8dp"
                             app:layout_constraintBottom_toBottomOf="@+id/viewA"
@@ -184,7 +184,7 @@
                             android:layout_marginStart="8dp"
                             android:text="폰트 바꾸기"
                             android:textColor="@color/black"
-                            android:textSize="20dp"
+                            android:textSize="20sp"
                             app:layout_constraintBottom_toBottomOf="@+id/viewB"
                             app:layout_constraintStart_toStartOf="@+id/viewB"
                             app:layout_constraintTop_toTopOf="@+id/viewB" />
@@ -196,7 +196,7 @@
                         android:id="@+id/tv_help"
                         android:layout_width="wrap_content"
                         android:text="도움말"
-                        android:textSize="24dp"
+                        android:textSize="24sp"
                         android:textColor="@color/black"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
@@ -207,7 +207,7 @@
                         android:id="@+id/tv_developer"
                         android:layout_width="wrap_content"
                         android:text="개발자에게 피드백"
-                        android:textSize="24dp"
+                        android:textSize="24sp"
                         android:textColor="@color/black"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"

@@ -168,8 +168,7 @@ public class DiaryDetailActivity extends BaseActivity implements View.OnClickLis
                     mDatabaseHelper.setInsertDiaryList(title, content, mSelectedWeatherType, userDate, writeDate);
                     Toast.makeText(this, "다이어리 등록이 완료됐어요.", Toast.LENGTH_SHORT).show();
                 }
-                Intent intent = new Intent(DiaryDetailActivity.this, MainActivity.class);
-                startActivity(intent);
+                IntentActivity(DiaryDetailActivity.this, MainActivity.class);
 
                 finish();// 현재 액티비티 종료
                 break;

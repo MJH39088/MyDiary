@@ -34,7 +34,8 @@
             android:exported="true" />
         <activity
             android:name="com.MyDiaryProj.mydiary.ModDialog"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@android:style/Theme.Dialog"
+            android:screenOrientation="unspecified"/>
 
 <!--        <activity-->
 <!--            android:name=".SettingActivity"-->

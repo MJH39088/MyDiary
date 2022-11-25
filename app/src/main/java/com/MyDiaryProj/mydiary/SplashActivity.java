@@ -23,8 +23,7 @@ public class SplashActivity extends BaseActivity {
             @Override
             public void run() {
                 // 메인 액티비티로 이동 하는 구간
-                Intent mainIntent = new Intent(SplashActivity.this , MainActivity.class); // 현재클래스.this > 다음클래스.class 로 이동하는 클래스 인스턴스 생성
-                startActivity(mainIntent); // 변수에 저장된 클래스로 이동
+                IntentActivity(SplashActivity.this, MainActivity.class); // 현재클래스.this > 다음클래스.class 로 이동하는 클래스 인스턴스 생성, 변수에 저장된 클래스로 이동
                 overridePendingTransition(R.anim.anim_window_in, R.anim.anim_window_out);
                 finish(); // 생명 주기 파괴
                 overridePendingTransition(R.anim.anim_window_in, R.anim.anim_window_out);
