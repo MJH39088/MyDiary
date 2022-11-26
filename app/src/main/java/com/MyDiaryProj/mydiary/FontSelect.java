@@ -33,6 +33,8 @@ public class FontSelect extends BaseActivity{
         rb_nanumsquare = (RadioButton) findViewById(R.id.rb_nanumsquare);
         rb_efdiary = (RadioButton) findViewById(R.id.rb_efdiary);
 
+        int b1 = ((BaseActivity)BaseActivity.mContext).b;
+
         iv_selectfontback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

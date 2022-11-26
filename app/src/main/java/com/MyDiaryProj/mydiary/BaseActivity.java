@@ -20,12 +20,16 @@ import androidx.appcompat.app.AppCompatActivity;
 public class BaseActivity extends AppCompatActivity {
 
     protected Typeface mTypeface = null;
+    public static Context mContext;
+    public static int b;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setFontSp();
+        mContext=this;
+        setb();
     }
 
     @Override
@@ -37,6 +41,26 @@ public class BaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         mTypeface = null;
         super.onDestroy();
+    }
+
+    protected void setb() {
+        SharedPreferences fontsp = getSharedPreferences("fontmode", Activity.MODE_PRIVATE);
+        int fontint = fontsp.getInt("FM", 0);
+        switch (fontint) {
+            case 0:
+                // 휴먼범석체
+                b = 1;
+                break;
+            case 1:
+                // 나눔스퀘어체
+                b = 2;
+                break;
+            case 2:
+                // 다이어리체
+                b = 3;
+            default:
+                Log.i("b 태그", "b 익셉션");
+        }
     }
 
     protected void setFont(int getFont) {

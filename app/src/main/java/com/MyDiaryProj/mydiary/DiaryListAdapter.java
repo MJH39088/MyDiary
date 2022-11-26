@@ -99,7 +99,30 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
             tv_title = itemView.findViewById(R.id.tv_title);            // 다이어리 제목
             tv_user_date = itemView.findViewById(R.id.tv_user_date);    // 사용자 지정 날짜
             view = itemView.findViewById(R.id.view);
+
             int a1 = ((FontSelect)FontSelect.mContext).a;
+            int b1 = ((BaseActivity)BaseActivity.mContext).b;
+
+            // 처음 들어왔을 때 리사이클러뷰 내의 폰트 재설정
+            switch (b1) {
+                case 1:
+                    tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/humanbumsuk.ttf"));
+                    tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/humanbumsuk.ttf"));
+                    break;
+                case 2:
+                    tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/nanumsquareroundr.ttf"));
+                    tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/nanumsquareroundr.ttf"));
+                    break;
+                case 3:
+                    tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/EF_Diary.ttf"));
+                    tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/EF_Diary.ttf"));
+                    break;
+                default:
+                    Log.i("어댑터 폰트 태그", "현재 저장된 폰트가 없어요.");
+                    break;
+            }
+
+            // 폰트 모드에서 폰트 선택시 리사이클러뷰 내의 폰트 재설정
             switch (a1) {
                 case 1:
                     tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/humanbumsuk.ttf"));

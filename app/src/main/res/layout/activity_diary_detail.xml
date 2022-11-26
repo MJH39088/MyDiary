@@ -56,7 +56,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
         android:orientation="vertical">
 
         <TextView
@@ -70,18 +72,26 @@
 
         <!-- 사용자에게 입력을 받는 input 필드 싱글 라인(한 줄만 입력 가능) 멀티 라인(엔터 여러줄 입력 가능) -->\
         <!-- maxLines : 줄 제한 maxLength : 글자 수 제한 padding은 내부에서 넓히는 구조 -->
-        <EditText
-            android:id="@+id/et_title"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:layout_marginTop="8dp"
-            android:singleLine="true"
-            android:maxLines="1"
-            android:maxLength="20"
-            android:padding="8dp"
-            android:background="@drawable/shape_input_field"/>
+            android:layout_height="wrap_content"
+            app:counterEnabled="true"
+            app:counterMaxLength="20"
+            style="@style/EditTextnoline" >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_title"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="8dp"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:maxLength="20"
+                android:padding="8dp"
+                android:background="@drawable/shape_input_field" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
     </LinearLayout>
 
@@ -89,7 +99,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+
         android:orientation="vertical">
 
         <TextView
@@ -189,7 +201,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
         android:orientation="vertical">
 
         <TextView
@@ -201,24 +215,34 @@
             android:textStyle="bold"
             android:textColor="@color/black" />
 
-        <EditText
-            android:id="@+id/et_content"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="top|left"
-            android:inputType="textMultiLine"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:layout_marginTop="8dp"
-            android:singleLine="true"
-            android:lines="15"
-            android:maxLines="15"
-            android:maxLength="120"
-            android:scrollbars="vertical"
-            android:scrollHorizontally="false"
-            android:overScrollMode="always"
-            android:padding="8dp"
-            android:background="@drawable/shape_input_field"/>
+            app:counterEnabled="true"
+            app:counterMaxLength="200"
+            style="@style/EditTextnoline">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top|left"
+                android:inputType="textMultiLine"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="8dp"
+                android:singleLine="true"
+                android:lines="11"
+                android:maxLines="11"
+                android:maxLength="200"
+                android:scrollbars="vertical"
+                android:scrollHorizontally="false"
+                android:overScrollMode="always"
+                android:padding="8dp"
+                android:background="@drawable/shape_input_field" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 

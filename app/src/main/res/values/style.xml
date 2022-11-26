@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="EditTextnoline" parent="Widget.Design.TextInputLayout">
+        <item name="colorControlNormal">@color/black</item>
+        <item name="boxStrokeColor">@color/black</item>
+        <item name="android:textCursorDrawable">@color/black</item>
+
+
+<!--        <item name="android:textColorHint">@color/black</item>  // hint 색-->
+<!--        <item name="hintTextColor">@color/black</item>   // floating hint 색-->
+
+<!--        <item name="helperText">@color/black</item> // xml 에서 한 속성을 여기서도 할 수 있습니다.-->
+<!--        <item name="helperTextTextColor">@color/black</item>-->
+    </style>
+</resources>
