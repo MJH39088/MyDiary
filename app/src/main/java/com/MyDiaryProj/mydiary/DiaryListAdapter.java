@@ -117,7 +117,12 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
                     tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/EF_Diary.ttf"));
                     tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/EF_Diary.ttf"));
                     break;
+                case 4:
+                    tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/maplestory_light.ttf"));
+                    tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/maplestory_light.ttf"));
+                    break;
                 default:
+                    // 앱 처음 설치 시 넘어온 변수값이 없기 때문에 익셉션 설정
                     Log.i("어댑터 폰트 태그", "현재 저장된 폰트가 없어요.");
                     break;
             }
@@ -136,7 +141,12 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
                     tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/EF_Diary.ttf"));
                     tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/EF_Diary.ttf"));
                     break;
+                case 4:
+                    tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/maplestory_light.ttf"));
+                    tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/maplestory_light.ttf"));
+                    break;
                 default:
+                    // 앱 처음 설치 시 넘어온 변수값이 없기 때문에 익셉션 설정
                     Log.i("어댑터 폰트 태그", "현재 저장된 폰트가 없어요.");
                     break;
             }

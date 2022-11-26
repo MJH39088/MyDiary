@@ -113,6 +113,15 @@
             android:fontFamily="@font/ef_diary"
             android:textColor="@color/black" />
 
+        <RadioButton
+            android:id="@+id/rb_maple"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="메이플스토리체"
+            android:textSize="20sp"
+            android:fontFamily="@font/maplestory_light"
+            android:textColor="@color/black" />
+
 
     </LinearLayout>
 

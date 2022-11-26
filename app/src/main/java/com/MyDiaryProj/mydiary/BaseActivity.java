@@ -44,6 +44,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     protected void setb() {
+        // setb를 onCreate안에 넣어줌으로서 MainActivity 진입 시 b의 값 설정, 앱 설치 시 0이 기본이므로 휴먼범석체가 기본.
         SharedPreferences fontsp = getSharedPreferences("fontmode", Activity.MODE_PRIVATE);
         int fontint = fontsp.getInt("FM", 0);
         switch (fontint) {
@@ -58,6 +59,9 @@ public class BaseActivity extends AppCompatActivity {
             case 2:
                 // 다이어리체
                 b = 3;
+            case 3:
+                // 메이플스토리체
+                b = 4;
             default:
                 Log.i("b 태그", "b 익셉션");
         }
@@ -74,7 +78,11 @@ public class BaseActivity extends AppCompatActivity {
                 mTypeface = Typeface.createFromAsset(this.getAssets(), "fonts/nanumsquareroundr.ttf");
                 break;
             case 2:
+                // 다이어리체
                 mTypeface = Typeface.createFromAsset(this.getAssets(), "fonts/EF_Diary.ttf");
+            case 3:
+                // 메이플스토리체
+                mTypeface = Typeface.createFromAsset(this.getAssets(), "fonts/maplestory_light.ttf");
         }
         setGlobalFont(getWindow().getDecorView());
     }
@@ -98,6 +106,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void setFontSp() {
         // fontsp의 저장 정보를 가져와서 액티비티에 폰트를 뿌림
         SharedPreferences fontsp = getSharedPreferences("fontmode", Activity.MODE_PRIVATE);
+        // 앱 처음 설치시 휴먼범석체로 지정
         int fontint = fontsp.getInt("FM", 0);
         switch (fontint) {
             case 0:
@@ -111,6 +120,9 @@ public class BaseActivity extends AppCompatActivity {
             case 2:
                 // 다이어리체
                 setFont(2);
+            case 3:
+                // 메이플스토리체
+                setFont(3);
             default:
                 Log.i("폰트 익셉션태그", "폰트 익셉션");
         }
