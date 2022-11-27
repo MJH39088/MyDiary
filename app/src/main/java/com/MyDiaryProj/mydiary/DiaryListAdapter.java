@@ -94,64 +94,8 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
             tv_user_date = itemView.findViewById(R.id.tv_user_date);    // 사용자 지정 날짜
             view = itemView.findViewById(R.id.view);
 
-            int a1 = ((FontSelect)FontSelect.mContext).a;
-            int b1 = ((BaseActivity)BaseActivity.mContext).b;
-
-            // 처음 들어왔을 때 리사이클러뷰 내의 폰트 재설정
-            switch (b1) {
-                case 1:
-                    tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/humanbumsuk.ttf"));
-                    tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/humanbumsuk.ttf"));
-                    break;
-                case 2:
-                    tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/nanumsquareroundr.ttf"));
-                    tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/nanumsquareroundr.ttf"));
-                    break;
-                case 3:
-                    tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/pretendardlight.ttf"));
-                    tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/pretendardlight.ttf"));
-                    break;
-                case 4:
-                    tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/maplestory_light.ttf"));
-                    tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/maplestory_light.ttf"));
-                    break;
-                case 5:
-                    tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/diary.ttf"));
-                    tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/diary.ttf"));
-                    break;
-                default:
-                    // 앱 처음 설치 시 넘어온 변수값이 없기 때문에 익셉션 설정
-                    Log.i("어댑터 폰트 태그", "현재 저장된 폰트가 없어요.");
-                    break;
-            }
-
-            // 폰트 모드에서 폰트 선택시 리사이클러뷰 내의 폰트 재설정
-            switch (a1) {
-                case 1:
-                    tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/humanbumsuk.ttf"));
-                    tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/humanbumsuk.ttf"));
-                    break;
-                case 2:
-                    tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/nanumsquareroundr.ttf"));
-                    tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/nanumsquareroundr.ttf"));
-                    break;
-                case 3:
-                    tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/pretendardlight.ttf"));
-                    tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/pretendardlight.ttf"));
-                    break;
-                case 4:
-                    tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/maplestory_light.ttf"));
-                    tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/maplestory_light.ttf"));
-                    break;
-                case 5:
-                    tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/diary.ttf"));
-                    tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/diary.ttf"));
-                    break;
-                default:
-                    // 앱 처음 설치 시 넘어온 변수값이 없기 때문에 익셉션 설정
-                    Log.i("어댑터 폰트 태그", "현재 저장된 폰트가 없어요.");
-                    break;
-            }
+            // FontSelect로 폰트 선택한 걸 뷰홀더 내부에서 처리해 리사이클러뷰 아이템들 폰트 재설정
+            setAdapterFont(itemView, tv_title, tv_user_date);
 
             // 일반 클릭 (상세 보기)
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -223,5 +167,66 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
         // 데이터 리스트 update
         mLstDiary = lstDiary;
         notifyDataSetChanged(); // 리스트 뷰 새로고침
+    }
+
+    public void setAdapterFont(@NonNull View itemView, TextView tv1, TextView tv2) {
+        int a1 = ((FontSelect)FontSelect.mContext).a;
+        int b1 = ((BaseActivity)BaseActivity.mContext).b;
+
+        // 처음 들어왔을 때 리사이클러뷰 내의 폰트 재설정
+        switch (b1) {
+            case 1:
+                tv1.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/humanbumsuk.ttf"));
+                tv2.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/humanbumsuk.ttf"));
+                break;
+            case 2:
+                tv1.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/nanumsquareroundr.ttf"));
+                tv2.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/nanumsquareroundr.ttf"));
+                break;
+            case 3:
+                tv1.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/pretendardlight.ttf"));
+                tv2.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/pretendardlight.ttf"));
+                break;
+            case 4:
+                tv1.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/maplestory_light.ttf"));
+                tv2.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/maplestory_light.ttf"));
+                break;
+            case 5:
+                tv1.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/diary.ttf"));
+                tv2.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/diary.ttf"));
+                break;
+            default:
+                // 앱 처음 설치 시 넘어온 변수값이 없기 때문에 익셉션 설정
+                Log.i("어댑터 폰트 태그", "현재 저장된 폰트가 없어요.");
+                break;
+        }
+
+        // 폰트 모드에서 폰트 선택시 리사이클러뷰 내의 폰트 재설정
+        switch (a1) {
+            case 1:
+                tv1.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/humanbumsuk.ttf"));
+                tv2.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/humanbumsuk.ttf"));
+                break;
+            case 2:
+                tv1.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/nanumsquareroundr.ttf"));
+                tv2.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/nanumsquareroundr.ttf"));
+                break;
+            case 3:
+                tv1.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/pretendardlight.ttf"));
+                tv2.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/pretendardlight.ttf"));
+                break;
+            case 4:
+                tv1.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/maplestory_light.ttf"));
+                tv2.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/maplestory_light.ttf"));
+                break;
+            case 5:
+                tv1.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/diary.ttf"));
+                tv2.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/diary.ttf"));
+                break;
+            default:
+                // 앱 처음 설치 시 넘어온 변수값이 없기 때문에 익셉션 설정
+                Log.i("어댑터 폰트 태그", "현재 저장된 폰트가 없어요.");
+                break;
+        }
     }
 }
