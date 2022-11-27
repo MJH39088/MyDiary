@@ -105,12 +105,12 @@
             android:textColor="@color/black" />
 
         <RadioButton
-            android:id="@+id/rb_efdiary"
+            android:id="@+id/rb_preten"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="다이어리체"
+            android:text="프리텐다드체"
             android:textSize="20sp"
-            android:fontFamily="@font/ef_diary"
+            android:fontFamily="@font/pretendardlight"
             android:textColor="@color/black" />
 
         <RadioButton
@@ -120,6 +120,15 @@
             android:text="메이플스토리체"
             android:textSize="20sp"
             android:fontFamily="@font/maplestory_light"
+            android:textColor="@color/black" />
+
+        <RadioButton
+            android:id="@+id/rb_efdiary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="다이어리체"
+            android:textSize="20sp"
+            android:fontFamily="@font/diary"
             android:textColor="@color/black" />
 
 

@@ -74,24 +74,4 @@ public class ModDialog extends Activity {
         });
     }
 
-//    public void fff() {
-//        SharedPreferences fontsp = getSharedPreferences("fontmode", Activity.MODE_PRIVATE);
-//        int fontint = fontsp.getInt("FM", 1);
-//        switch (fontint) {
-//            case 0:
-//                // 휴먼범석체
-//                setFont(0);
-//                break;
-//            case 1:
-//                // 나눔스퀘어체
-//                setFont(1);
-//                break;
-//            case 2:
-//                // 다이어리체
-//                setFont(2);
-//            default:
-//                Log.i("폰트 익셉션태그", "폰트 익셉션내용");
-//    }
-//
-//}
 }

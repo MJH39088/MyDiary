@@ -17,6 +17,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.lang.reflect.Type;
+
 public class BaseActivity extends AppCompatActivity {
 
     protected Typeface mTypeface = null;
@@ -57,13 +59,20 @@ public class BaseActivity extends AppCompatActivity {
                 b = 2;
                 break;
             case 2:
-                // 다이어리체
+                // 프리텐다드체
                 b = 3;
+                break;
             case 3:
                 // 메이플스토리체
                 b = 4;
+                break;
+            case 4:
+                // 다이어리체
+                b = 5;
+                break;
             default:
                 Log.i("b 태그", "b 익셉션");
+                break;
         }
     }
 
@@ -78,11 +87,17 @@ public class BaseActivity extends AppCompatActivity {
                 mTypeface = Typeface.createFromAsset(this.getAssets(), "fonts/nanumsquareroundr.ttf");
                 break;
             case 2:
-                // 다이어리체
-                mTypeface = Typeface.createFromAsset(this.getAssets(), "fonts/EF_Diary.ttf");
+                // 프리텐다드체
+                mTypeface = Typeface.createFromAsset(this.getAssets(), "fonts/pretendardlight.ttf");
+                break;
             case 3:
                 // 메이플스토리체
                 mTypeface = Typeface.createFromAsset(this.getAssets(), "fonts/maplestory_light.ttf");
+                break;
+            case 4:
+                // 다이어리체
+                mTypeface = Typeface.createFromAsset(this.getAssets(), "fonts/diary.ttf");
+                break;
         }
         setGlobalFont(getWindow().getDecorView());
     }
@@ -118,13 +133,20 @@ public class BaseActivity extends AppCompatActivity {
                 setFont(1);
                 break;
             case 2:
-                // 다이어리체
+                // 프리텐다드체
                 setFont(2);
+                break;
             case 3:
                 // 메이플스토리체
                 setFont(3);
+                break;
+            case 4:
+                // 다이어리체
+                setFont(4);
+                break;
             default:
                 Log.i("폰트 익셉션태그", "폰트 익셉션");
+                break;
         }
     }
 

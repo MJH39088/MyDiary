@@ -1,14 +1,10 @@
 package com.MyDiaryProj.mydiary;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
-import android.graphics.fonts.Font;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,10 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 //Alt + Enter 사용하면 좋음
@@ -114,12 +108,16 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
                     tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/nanumsquareroundr.ttf"));
                     break;
                 case 3:
-                    tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/EF_Diary.ttf"));
-                    tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/EF_Diary.ttf"));
+                    tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/pretendardlight.ttf"));
+                    tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/pretendardlight.ttf"));
                     break;
                 case 4:
                     tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/maplestory_light.ttf"));
                     tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/maplestory_light.ttf"));
+                    break;
+                case 5:
+                    tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/diary.ttf"));
+                    tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/diary.ttf"));
                     break;
                 default:
                     // 앱 처음 설치 시 넘어온 변수값이 없기 때문에 익셉션 설정
@@ -138,12 +136,16 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
                     tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/nanumsquareroundr.ttf"));
                     break;
                 case 3:
-                    tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/EF_Diary.ttf"));
-                    tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/EF_Diary.ttf"));
+                    tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/pretendardlight.ttf"));
+                    tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/pretendardlight.ttf"));
                     break;
                 case 4:
                     tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/maplestory_light.ttf"));
                     tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/maplestory_light.ttf"));
+                    break;
+                case 5:
+                    tv_title.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/diary.ttf"));
+                    tv_user_date.setTypeface(Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/diary.ttf"));
                     break;
                 default:
                     // 앱 처음 설치 시 넘어온 변수값이 없기 때문에 익셉션 설정
