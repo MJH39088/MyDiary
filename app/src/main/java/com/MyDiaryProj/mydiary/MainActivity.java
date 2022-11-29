@@ -41,7 +41,7 @@ public class MainActivity extends BaseActivity {
     DatabaseHelper mDatabaseHelper;     // 데이터베이스 헬퍼 클래스 유틸 객체
     ImageView iv_question, iv_settings, iv_menu;
     DrawerLayout drawerLayout;
-    TextView tvHome, tv_Change, tv_help, tv_developer, tvFontChangemode;
+    TextView tvHome, tv_Change, tv_help, tv_developer, tvFontChangemode, tv_email;
 
 
     // var는 전역변수 사용 가능 val은 한 곳에서만 사용 가능 (메소드 안에서만)
@@ -66,6 +66,7 @@ public class MainActivity extends BaseActivity {
         tv_help = (TextView) findViewById(R.id.tv_help);
         tv_developer = (TextView) findViewById(R.id.tv_developer);
         tvFontChangemode = (TextView) findViewById(R.id.tvFontChangemode);
+        tv_email = (TextView) findViewById(R.id.tv_email);
 
         mRvDiary.setAdapter(mAdapter);
 
@@ -175,9 +176,18 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-//        전에 설정했던 모드 가져오기, 처음 앱 킬 때 두 번 호출되는 버그 있음.
-//        themeColor = ThemeUtil.modLoad(getApplicationContext());
-//        ThemeUtil.applyTheme(themeColor);
+        tv_email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent email = new Intent(Intent.ACTION_SEND);
+                email.setType("plain/text");
+                String[] address = {"hcr71@naver.com"};
+                email.putExtra(Intent.EXTRA_EMAIL, address);
+                email.putExtra(Intent.EXTRA_SUBJECT, "[간단 일기장] 의견 보내기");
+                email.putExtra(Intent.EXTRA_TEXT, "안녕하세요!\n소중한 의견을 주셔서 감사합니다!\n고객님이 주신 소중한 의견\n신중하게 검토 후 답변드리겠습니다:)");
+                startActivity(email);
+            }
+        });
 
         // 다이어리 샘플 아이템 생성
 //        DiaryModel item = new DiaryModel();
