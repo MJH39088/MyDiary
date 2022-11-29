@@ -17,6 +17,7 @@ import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.graphics.fonts.Font;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,6 +29,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.play.core.review.ReviewInfo;
+import com.google.android.play.core.review.ReviewManager;
+import com.google.android.play.core.review.ReviewManagerFactory;
+import com.google.android.play.core.review.model.ReviewErrorCode;
+import com.google.android.play.core.tasks.OnCompleteListener;
+import com.google.android.play.core.tasks.OnFailureListener;
+import com.google.android.play.core.tasks.RuntimeExecutionException;
+import com.google.android.play.core.tasks.Task;
 
 import org.w3c.dom.Text;
 
@@ -41,7 +50,7 @@ public class MainActivity extends BaseActivity {
     DatabaseHelper mDatabaseHelper;     // 데이터베이스 헬퍼 클래스 유틸 객체
     ImageView iv_question, iv_settings, iv_menu;
     DrawerLayout drawerLayout;
-    TextView tvHome, tv_Change, tv_help, tv_developer, tvFontChangemode, tv_email;
+    TextView tvHome, tv_Change, tv_help, tv_developer, tvFontChangemode, tv_email, tv_reveiw;
 
 
     // var는 전역변수 사용 가능 val은 한 곳에서만 사용 가능 (메소드 안에서만)
@@ -67,6 +76,7 @@ public class MainActivity extends BaseActivity {
         tv_developer = (TextView) findViewById(R.id.tv_developer);
         tvFontChangemode = (TextView) findViewById(R.id.tvFontChangemode);
         tv_email = (TextView) findViewById(R.id.tv_email);
+        tv_reveiw = (TextView) findViewById(R.id.tv_review);
 
         mRvDiary.setAdapter(mAdapter);
 
@@ -184,8 +194,17 @@ public class MainActivity extends BaseActivity {
                 String[] address = {"hcr71@naver.com"};
                 email.putExtra(Intent.EXTRA_EMAIL, address);
                 email.putExtra(Intent.EXTRA_SUBJECT, "[간단 일기장] 의견 보내기");
-                email.putExtra(Intent.EXTRA_TEXT, "안녕하세요!\n소중한 의견을 주셔서 감사합니다!\n고객님이 주신 소중한 의견\n신중하게 검토 후 답변드리겠습니다:)");
+                email.putExtra(Intent.EXTRA_TEXT, "안녕하세요!\n소중한 의견을 주셔서 감사합니다!\n고객님이 주신 소중한 의견\n신중하게 검토 후 답변드리겠습니다:)" +
+                        "\n-------------------------------------\n앱 버전 : "+ BuildConfig.VERSION_NAME +"\n기기명 : "+ Build.MODEL +
+                        "\n안드로이드 OS : "+ Build.VERSION.RELEASE +"\n-------------------------------------");
                 startActivity(email);
+            }
+        });
+
+        tv_reveiw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showInAppReviewPopup();
             }
         });
 
@@ -249,5 +268,26 @@ public class MainActivity extends BaseActivity {
         }
         mLstDiary = mDatabaseHelper.getDiaryListFromDB(); // 데이터베이스로부터 저장되어 있는 DB를 확인하여 가지고 옴.
         mAdapter.setListInit(mLstDiary);
+    }
+
+    private void showInAppReviewPopup() {
+        ReviewManager manager = ReviewManagerFactory.create(getApplicationContext());
+        Task<ReviewInfo> request = manager.requestReviewFlow();
+        request.addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                ReviewInfo reviewInfo = task.getResult();
+                manager.launchReviewFlow(this, reviewInfo).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(Exception e) {
+                    }
+                }).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                    }
+                });
+            } else {
+                @ReviewErrorCode int reviewErrorCode = ((RuntimeExecutionException) task.getException()).getErrorCode();
+            }
+        });
     }
 }

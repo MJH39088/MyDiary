@@ -224,10 +224,22 @@
                             android:layout_marginTop="21dp"
                             android:drawablePadding="8dp"
                             android:gravity="center"
-                            android:text="개발자에게 피드백"
+                            android:text="의견 보내기"
                             android:textColor="@color/black"
                             android:textSize="24sp" />
                     </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_review"
+                        android:layout_width="wrap_content"
+                        android:text="리뷰하기"
+                        android:textSize="24sp"
+                        android:textColor="@color/black"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="21dp"
+                        android:drawablePadding="8dp"
+                        android:gravity="center" />
 
                     <TextView
                         android:id="@+id/tv_developer"
