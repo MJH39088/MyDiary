@@ -17,6 +17,7 @@ import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.graphics.fonts.Font;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -50,7 +51,8 @@ public class MainActivity extends BaseActivity {
     DatabaseHelper mDatabaseHelper;     // 데이터베이스 헬퍼 클래스 유틸 객체
     ImageView iv_question, iv_settings, iv_menu;
     DrawerLayout drawerLayout;
-    TextView tvHome, tv_Change, tv_help, tv_developer, tvFontChangemode, tv_email, tv_reveiw;
+    TextView tvHome, tv_Change, tv_help,  tvFontChangemode, tv_email, tv_reveiw;
+//    tv_developer,
 
 
     // var는 전역변수 사용 가능 val은 한 곳에서만 사용 가능 (메소드 안에서만)
@@ -73,7 +75,7 @@ public class MainActivity extends BaseActivity {
         tv_Change = (TextView) findViewById(R.id.tvChange);
         tvHome = findViewById(R.id.tvHome);
         tv_help = (TextView) findViewById(R.id.tv_help);
-        tv_developer = (TextView) findViewById(R.id.tv_developer);
+//        tv_developer = (TextView) findViewById(R.id.tv_developer);
         tvFontChangemode = (TextView) findViewById(R.id.tvFontChangemode);
         tv_email = (TextView) findViewById(R.id.tv_email);
         tv_reveiw = (TextView) findViewById(R.id.tv_review);
@@ -172,12 +174,12 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        tv_developer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setDialogNagativeMessage("email : gjalswo3908@gmail.com", "확인", "피드백을 주시면 힘이 나요.");
-            }
-        });
+//        tv_developer.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                setDialogNagativeMessage("email : gjalswo3908@gmail.com", "확인", "피드백을 주시면 힘이 나요.");
+//            }
+//        });
 
         tvFontChangemode.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -204,7 +206,10 @@ public class MainActivity extends BaseActivity {
         tv_reveiw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showInAppReviewPopup();
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("market://details?id=" + getPackageName()));
+                startActivity(intent);
+//                showInAppReviewPopup();
             }
         });
 
