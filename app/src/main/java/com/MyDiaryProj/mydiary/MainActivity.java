@@ -26,6 +26,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -50,7 +51,7 @@ public class MainActivity extends BaseActivity {
     DiaryListAdapter mAdapter;          // 리사이클러 뷰와 연동할 어댑터
     ArrayList<DiaryModel> mLstDiary;    // 리스트에 표현할 다이어리 데이터들 (배열)
     DatabaseHelper mDatabaseHelper;     // 데이터베이스 헬퍼 클래스 유틸 객체
-    ImageView iv_question, iv_settings, iv_menu;
+    ImageView iv_question, iv_settings, iv_menu, img_nodiary;
     DrawerLayout drawerLayout;
     TextView tvHome, tv_Change, tv_help,  tvFontChangemode, tv_email, tv_reveiw, tv_item_empty_text;
 //    tv_developer,
@@ -81,44 +82,9 @@ public class MainActivity extends BaseActivity {
         tv_email = (TextView) findViewById(R.id.tv_email);
         tv_reveiw = (TextView) findViewById(R.id.tv_review);
         tv_item_empty_text = (TextView) findViewById(R.id.tv_item_empty_text);
+        img_nodiary = (ImageView) findViewById(R.id.img_nodiary);
 
-        mAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-            @Override
-            public void onChanged() {
-                super.onChanged();
-                checkEmpty();
-            }
-
-            @Override
-            public void onItemRangeChanged(int positionStart, int itemCount) {
-                super.onItemRangeChanged(positionStart, itemCount);
-                checkEmpty();
-            }
-
-            @Override
-            public void onItemRangeChanged(int positionStart, int itemCount, @Nullable Object payload) {
-                super.onItemRangeChanged(positionStart, itemCount, payload);
-                checkEmpty();
-            }
-
-            @Override
-            public void onItemRangeInserted(int positionStart, int itemCount) {
-                super.onItemRangeInserted(positionStart, itemCount);
-                checkEmpty();
-            }
-
-            @Override
-            public void onItemRangeRemoved(int positionStart, int itemCount) {
-                super.onItemRangeRemoved(positionStart, itemCount);
-                checkEmpty();
-            }
-
-            @Override
-            public void onItemRangeMoved(int fromPosition, int toPosition, int itemCount) {
-                super.onItemRangeMoved(fromPosition, toPosition, itemCount);
-                checkEmpty();
-            }
-        });
+        setAdapterObserver();
 
         mRvDiary.setAdapter(mAdapter);
 
@@ -266,12 +232,6 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    private void checkEmpty() {
-        if (mAdapter.getItemCount() == 0) {
-            tv_item_empty_text.setText("현재 저장된 일기가 없어요.");
-        }
-    }
-
     /**
      * Activity LifeCycle
      * 날짜 갱신
@@ -299,7 +259,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-
         /** DrawerRecyclerView 열려있으면 닫고 뒤로가기 한번 더 누를 시 화면 종료 */
         if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
 
@@ -322,24 +281,72 @@ public class MainActivity extends BaseActivity {
         mAdapter.setListInit(mLstDiary);
     }
 
-    private void showInAppReviewPopup() {
-        ReviewManager manager = ReviewManagerFactory.create(getApplicationContext());
-        Task<ReviewInfo> request = manager.requestReviewFlow();
-        request.addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                ReviewInfo reviewInfo = task.getResult();
-                manager.launchReviewFlow(this, reviewInfo).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(Exception e) {
-                    }
-                }).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                    }
-                });
-            } else {
-                @ReviewErrorCode int reviewErrorCode = ((RuntimeExecutionException) task.getException()).getErrorCode();
+//    인앱리뷰
+//    private void showInAppReviewPopup() {
+//        ReviewManager manager = ReviewManagerFactory.create(getApplicationContext());
+//        Task<ReviewInfo> request = manager.requestReviewFlow();
+//        request.addOnCompleteListener(task -> {
+//            if (task.isSuccessful()) {
+//                ReviewInfo reviewInfo = task.getResult();
+//                manager.launchReviewFlow(this, reviewInfo).addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(Exception e) {
+//                    }
+//                }).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                    }
+//                });
+//            } else {
+//                @ReviewErrorCode int reviewErrorCode = ((RuntimeExecutionException) task.getException()).getErrorCode();
+//            }
+//        });
+//    }
+
+    private void setAdapterObserver() {
+        mAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                checkEmpty();
+            }
+
+            @Override
+            public void onItemRangeChanged(int positionStart, int itemCount) {
+                super.onItemRangeChanged(positionStart, itemCount);
+                checkEmpty();
+            }
+
+            @Override
+            public void onItemRangeChanged(int positionStart, int itemCount, @Nullable Object payload) {
+                super.onItemRangeChanged(positionStart, itemCount, payload);
+                checkEmpty();
+            }
+
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+                checkEmpty();
+            }
+
+            @Override
+            public void onItemRangeRemoved(int positionStart, int itemCount) {
+                super.onItemRangeRemoved(positionStart, itemCount);
+                checkEmpty();
+            }
+
+            @Override
+            public void onItemRangeMoved(int fromPosition, int toPosition, int itemCount) {
+                super.onItemRangeMoved(fromPosition, toPosition, itemCount);
+                checkEmpty();
             }
         });
+    }
+
+    private void checkEmpty() {
+        if (mAdapter.getItemCount() == 0) {
+            tv_item_empty_text.setText("현재 저장된 일기가 없어요.");
+            img_nodiary.setVisibility(View.VISIBLE);
+        }
     }
 }

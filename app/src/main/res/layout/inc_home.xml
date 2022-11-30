@@ -111,6 +111,17 @@
             android:layout_height="match_parent"
             android:id="@+id/rvcl">
 
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/img_nodiary"
+                android:src="@drawable/img_nodiary"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toTopOf="@id/tv_item_empty_text"
+                app:layout_constraintStart_toStartOf="@id/rvcl"
+                app:layout_constraintEnd_toEndOf="@id/rvcl"
+                android:visibility="invisible"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
