@@ -1,6 +1,7 @@
 package com.MyDiaryProj.mydiary;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -51,7 +52,7 @@ public class MainActivity extends BaseActivity {
     DatabaseHelper mDatabaseHelper;     // 데이터베이스 헬퍼 클래스 유틸 객체
     ImageView iv_question, iv_settings, iv_menu;
     DrawerLayout drawerLayout;
-    TextView tvHome, tv_Change, tv_help,  tvFontChangemode, tv_email, tv_reveiw;
+    TextView tvHome, tv_Change, tv_help,  tvFontChangemode, tv_email, tv_reveiw, tv_item_empty_text;
 //    tv_developer,
 
 
@@ -79,6 +80,45 @@ public class MainActivity extends BaseActivity {
         tvFontChangemode = (TextView) findViewById(R.id.tvFontChangemode);
         tv_email = (TextView) findViewById(R.id.tv_email);
         tv_reveiw = (TextView) findViewById(R.id.tv_review);
+        tv_item_empty_text = (TextView) findViewById(R.id.tv_item_empty_text);
+
+        mAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                checkEmpty();
+            }
+
+            @Override
+            public void onItemRangeChanged(int positionStart, int itemCount) {
+                super.onItemRangeChanged(positionStart, itemCount);
+                checkEmpty();
+            }
+
+            @Override
+            public void onItemRangeChanged(int positionStart, int itemCount, @Nullable Object payload) {
+                super.onItemRangeChanged(positionStart, itemCount, payload);
+                checkEmpty();
+            }
+
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+                checkEmpty();
+            }
+
+            @Override
+            public void onItemRangeRemoved(int positionStart, int itemCount) {
+                super.onItemRangeRemoved(positionStart, itemCount);
+                checkEmpty();
+            }
+
+            @Override
+            public void onItemRangeMoved(int fromPosition, int toPosition, int itemCount) {
+                super.onItemRangeMoved(fromPosition, toPosition, itemCount);
+                checkEmpty();
+            }
+        });
 
         mRvDiary.setAdapter(mAdapter);
 
@@ -225,6 +265,13 @@ public class MainActivity extends BaseActivity {
 
 
     }
+
+    private void checkEmpty() {
+        if (mAdapter.getItemCount() == 0) {
+            tv_item_empty_text.setText("현재 저장된 일기가 없어요.");
+        }
+    }
+
     /**
      * Activity LifeCycle
      * 날짜 갱신
