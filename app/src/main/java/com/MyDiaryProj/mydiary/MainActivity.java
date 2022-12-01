@@ -215,6 +215,7 @@ public class MainActivity extends BaseActivity {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse("market://details?id=" + getPackageName()));
                 startActivity(intent);
+//                인앱리뷰
 //                showInAppReviewPopup();
             }
         });
@@ -267,7 +268,24 @@ public class MainActivity extends BaseActivity {
             drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
         } else {
-            this.setDialogPositiveMessage("앱을 종료하시겠어요?", "아니오", "예", "확인");
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("앱을 종료하시겠어요?");
+            builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    return;
+                }
+            });
+            builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    moveTaskToBack(true);						// 태스크를 백그라운드로 이동
+                    finishAndRemoveTask();						// 액티비티 종료 + 태스크 리스트에서 지우기
+                    android.os.Process.killProcess(android.os.Process.myPid());	// 앱 프로세스 종료
+                }
+            });
+            builder.setTitle("나가기");
+            builder.show();
         }
     }
 
