@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,8 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
     ArrayList<DiaryModel> mLstDiary;        // 다이어리 데이터들을 들고 있는 자료형 배열
     Context mContext;
     DatabaseHelper mDatabaseHelper;         // 데이터베이스 헬퍼 클래스 유틸 객체
+
+//    private SparseBooleanArray selectedItems = new SparseBooleanArray();
 
     @NonNull
     @Override
@@ -70,9 +73,24 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
         // 날씨 제목, 일시
         String title = mLstDiary.get(position).getTitle();
         String userDate = mLstDiary.get(position).getUserDate();
+        String content = mLstDiary.get(position).getContent();
 
         holder.tv_title.setText(title);
         holder.tv_user_date.setText(userDate);
+//        holder.tv_expand.setText(content);
+//
+//        holder.iv_expand.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (selectedItems.get(position)) {
+//                    selectedItems.put(position, true);
+//                    holder.tv_expand.setVisibility(View.VISIBLE);
+//                } else {
+//                    selectedItems.delete(position);
+//                    holder.tv_expand.setVisibility(View.GONE);
+//                }
+//            }
+//        });
     }
 
     @Override
@@ -82,9 +100,10 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView iv_weather;
+        ImageView iv_weather, iv_expand;
         View view;
         TextView tv_title, tv_user_date;
+        //, tv_expand
 
         // 하나의 아이템 뷰
         public ViewHolder(@NonNull View itemView) {
@@ -92,7 +111,9 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
             iv_weather = itemView.findViewById(R.id.iv_weather);        // 날씨 이미지
             tv_title = itemView.findViewById(R.id.tv_title);            // 다이어리 제목
             tv_user_date = itemView.findViewById(R.id.tv_user_date);    // 사용자 지정 날짜
+//            tv_expand = itemView.findViewById(R.id.tv_expand);
             view = itemView.findViewById(R.id.view);
+//            iv_expand = itemView.findViewById(R.id.iv_expend);
 
             // FontSelect로 폰트 선택한 걸 뷰홀더 내부에서 처리해 리사이클러뷰 아이템들 폰트 재설정
             setAdapterFont(itemView, tv_title, tv_user_date);
@@ -160,6 +181,7 @@ public class DiaryListAdapter extends RecyclerView.Adapter<DiaryListAdapter.View
                     return true; //onClick 동시 실행 안되게 true 설정
                 }
             });
+
         }
     }
 

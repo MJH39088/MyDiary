@@ -22,6 +22,7 @@
         <!-- match_parent는 자신의 부모(레이아웃)에 폭이나 높이를 맞추는 것
              wrap_content는 폭과 높이가 글자가 꼭 들어갈만큼 감싸기-->
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/const1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -44,14 +45,15 @@
                 android:tint="@color/black" />
 
             <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivLogo"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:id="@+id/ivLogo"
                 android:layout_marginLeft="40dp"
-                app:layout_constraintStart_toEndOf="@+id/iv_settings"
-                app:layout_constraintTop_toTopOf="@+id/iv_settings"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_settings"
-                android:src="@drawable/img_logo_diary" />
+                android:src="@drawable/img_logo_diary"
+                android:layout_marginRight="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/const1"
+                app:layout_constraintEnd_toStartOf="@+id/tvLogo"
+                app:layout_constraintTop_toTopOf="@+id/const1" />
 
             <!-- 서버와 클라이언트 안전한 연결을 위한 AppCompat -->
             <androidx.appcompat.widget.AppCompatTextView
@@ -60,9 +62,10 @@
                 android:layout_marginLeft="8dp"
                 android:text="간단 일기장"
                 android:id="@+id/tvLogo"
-                app:layout_constraintStart_toEndOf="@+id/ivLogo"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/const1"
+                app:layout_constraintTop_toTopOf="@+id/const1"
+                app:layout_constraintBottom_toBottomOf="@+id/const1"
+                app:layout_constraintStart_toStartOf="@+id/const1"
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 android:textStyle="bold" />

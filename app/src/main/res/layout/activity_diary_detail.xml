@@ -76,7 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:counterEnabled="true"
-            app:counterMaxLength="20"
+            app:counterMaxLength="30"
             style="@style/EditTextnoline" >
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_title"
@@ -87,7 +87,7 @@
                 android:layout_marginTop="8dp"
                 android:singleLine="true"
                 android:maxLines="1"
-                android:maxLength="20"
+                android:maxLength="30"
                 android:padding="8dp"
                 android:background="@drawable/shape_input_field" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -219,7 +219,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:counterEnabled="true"
-            app:counterMaxLength="200"
+            app:counterMaxLength="1000"
             style="@style/EditTextnoline">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -233,8 +233,8 @@
                 android:layout_marginTop="8dp"
                 android:singleLine="true"
                 android:lines="11"
-                android:maxLines="11"
-                android:maxLength="200"
+                android:maxLines="40"
+                android:maxLength="1000"
                 android:scrollbars="vertical"
                 android:scrollHorizontally="false"
                 android:overScrollMode="always"

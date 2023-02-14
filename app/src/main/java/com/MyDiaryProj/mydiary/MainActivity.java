@@ -26,6 +26,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -61,6 +62,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) { // 액티비티가 시작할 때 최초 1회만 호출
         super.onCreate(savedInstanceState);
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_main);
 
         // 데이터베이스 객체 초기화
@@ -137,7 +139,7 @@ public class MainActivity extends BaseActivity {
         iv_question.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setDialogNagativeMessage("작성한 일기를 길게 누르면 수정과 삭제가 가능해요.", "확인", "도움말");
+                setDialogNagativeMessage("타이틀 화면에서 작성한 일기를 길게 누르면 수정과 삭제가 가능해요.", "확인", "도움말");
             }
         });
 

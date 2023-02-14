@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll3"
     android:layout_margin="16dp"
     android:background="@drawable/shape_input_field"
     android:orientation="vertical">
@@ -13,7 +14,8 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:layout_marginTop="7.5dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:id="@+id/ll4">
 
         <ImageView
             android:id="@+id/iv_weather"
@@ -30,6 +32,17 @@
             android:text="다이어리 제목"
             android:textColor="@color/black"
             android:textSize="18sp" />
+
+
+<!--            <ImageView-->
+<!--                android:id="@+id/iv_expend"-->
+<!--                android:layout_width="29dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginStart="180dp"-->
+<!--                android:src="@drawable/img_gmail" />-->
+
+
+
 
 
     </LinearLayout>
@@ -64,6 +77,26 @@
             android:textSize="12sp"
             android:textColor="@color/black"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="8dp"-->
+<!--        android:visibility="gone"-->
+<!--        android:background="@drawable/shape_input_field">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/tv_expand"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="실험"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
 
     <!-- Divided Line -->
     <View
