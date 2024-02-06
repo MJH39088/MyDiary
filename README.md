@@ -18,9 +18,9 @@ Developer : 허민재
 
 상단의 버튼들로 다크 모드, 라이트 모드 설정과 일기장 앱 내의 폰트 설정을 할 수 있습니다.
 
-![간단일기장2.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/63cb8475-4429-4a35-b2af-cabebf655a7e/d27344d7-35f3-43a9-839a-16f251fc78fe/%EA%B0%84%EB%8B%A8%EC%9D%BC%EA%B8%B0%EC%9E%A52.png)
+![간단일기장2](https://github.com/MJH39088/MyDiary/assets/104211982/feef2345-81e3-4498-95fa-09c19bcf8baf)![간단일기장3](https://github.com/MJH39088/MyDiary/assets/104211982/d90726c5-b24f-4bbd-bee4-4e82e95f6e94)
 
-![간단일기장3.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/63cb8475-4429-4a35-b2af-cabebf655a7e/88ad6908-660a-4042-bcc6-6cbd68eaaa0e/%EA%B0%84%EB%8B%A8%EC%9D%BC%EA%B8%B0%EC%9E%A53.png)
+
 
 우측 하단의 버튼을 눌러 일기를 작성할 수 있습니다.
 
