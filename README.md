@@ -1,4 +1,4 @@
-#### MyDiary
+# MyDiary
 
 Developer : 허민재
 
