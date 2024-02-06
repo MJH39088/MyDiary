@@ -26,9 +26,9 @@ Developer : 허민재
 
 작성된 일기는 앱 내의 로컬 데이터베이스, Room에 의해 저장됩니다.
 
-![간단일기장4.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/63cb8475-4429-4a35-b2af-cabebf655a7e/b2a8676c-7834-4d38-af07-1a7812c9a67e/%EA%B0%84%EB%8B%A8%EC%9D%BC%EA%B8%B0%EC%9E%A54.png)
+![간단일기장4](https://github.com/MJH39088/MyDiary/assets/104211982/ccd61f37-df9d-4bd4-8fee-b39e871c0dec)![간단일기장5](https://github.com/MJH39088/MyDiary/assets/104211982/02481517-a6b0-4ca4-9ee6-3793da659927)
 
-![간단일기장5.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/63cb8475-4429-4a35-b2af-cabebf655a7e/a36cc170-1f31-4148-959a-d9f7e29ac0ac/%EA%B0%84%EB%8B%A8%EC%9D%BC%EA%B8%B0%EC%9E%A55.png)
+
 
 메인 페이지의 우상단 버튼을 눌러 DrawerLayout을 호출해 라이트 모드, 다크 모드 변경과
 
