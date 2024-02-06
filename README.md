@@ -9,7 +9,8 @@ Developer : 허민재
 
 ## 📖 상세 내용
 
-![간단일기장1.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/63cb8475-4429-4a35-b2af-cabebf655a7e/2f2bb8e7-8f39-45f5-b63a-67118845ee71/%EA%B0%84%EB%8B%A8%EC%9D%BC%EA%B8%B0%EC%9E%A51.png)
+![간단일기장1](https://github.com/MJH39088/MyDiary/assets/104211982/1c85b399-e395-4402-aebd-a2aa64a1048b)
+
 
 메인 페이지입니다.
 
